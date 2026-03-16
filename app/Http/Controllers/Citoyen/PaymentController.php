@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Citoyen;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePaymentRequest;
+use App\Http\Requests\MarkPaymentAsPaidRequest;
 use App\Models\Demande;
 use App\Models\Payment;
 use App\Services\PaymentReceiptService;
 use Illuminate\View\View;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 
@@ -17,8 +18,7 @@ class PaymentController extends Controller
 
     public function __construct(PaymentReceiptService $receiptService)
     {
-        $this->middleware('auth');
-        $this->middleware('role:citoyen');
+        // Middlewares définis dans routes/web.php - plus besoin de les redéclarer
         $this->receiptService = $receiptService;
     }
 
@@ -74,22 +74,18 @@ class PaymentController extends Controller
     /**
      * Stocke un nouveau paiement
      */
-    public function store(Request $request, Demande $demande): RedirectResponse
+    public function store(StorePaymentRequest $request, Demande $demande): RedirectResponse
     {
         $this->authorize('view', $demande);
 
-        $validated = $request->validate([
-            'montant' => 'required|numeric|min:0.01',
-            'methode_paiement' => 'required|in:virement,cheque,especes,carte,mobile_money',
-            'description' => 'nullable|string|max:500',
-        ]);
+        $validated = $request->validated();
 
         $payment = $this->receiptService->createPayment(
             demandeId: $demande->id,
             citoyenId: auth()->id(),
             montant: $validated['montant'],
             methodePaiement: $validated['methode_paiement'],
-            description: $validated['description']
+            description: $validated['description'] ?? null
         );
 
         return redirect()->route('citoyen.payments.show', $payment)
@@ -114,13 +110,11 @@ class PaymentController extends Controller
     /**
      * Marque le paiement comme effectué
      */
-    public function markAsPaid(Request $request, Payment $payment): RedirectResponse
+    public function markAsPaid(MarkPaymentAsPaidRequest $request, Payment $payment): RedirectResponse
     {
         $this->authorize('update', $payment);
 
-        $validated = $request->validate([
-            'numero_transaction' => 'nullable|string|max:100',
-        ]);
+        $validated = $request->validated();
 
         $this->receiptService->markAsPaid(
             $payment,

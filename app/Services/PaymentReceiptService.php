@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\Payment;
+use App\Enums\PaymentStatus;
+use App\Enums\PaymentMethod;
 use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade as PDF;
 
@@ -72,6 +74,9 @@ class PaymentReceiptService
             'statut' => 'pending',
         ]);
 
+        // Enregistre la création en audit log
+        AuditService::logCreate($payment, request());
+
         return $payment;
     }
 
@@ -80,6 +85,8 @@ class PaymentReceiptService
      */
     public function markAsPaid(Payment $payment, $numeroTransaction = null): Payment
     {
+        $oldValues = $payment->toArray();
+
         $payment->update([
             'statut' => 'paid',
             'date_paiement' => now(),
@@ -89,6 +96,14 @@ class PaymentReceiptService
         // Générer le reçu PDF
         $this->generateReceipt($payment);
 
+        // Enregistre la mise à jour en audit log
+        AuditService::logUpdate(
+            $payment,
+            $oldValues,
+            $payment->fresh()->toArray(),
+            request()
+        );
+
         return $payment;
     }
 
@@ -97,10 +112,20 @@ class PaymentReceiptService
      */
     public function cancel(Payment $payment, $raison = null): Payment
     {
+        $oldValues = $payment->toArray();
+
         $payment->update([
             'statut' => 'cancelled',
             'description' => $raison,
         ]);
+
+        // Enregistre l'annulation
+        AuditService::logUpdate(
+            $payment,
+            $oldValues,
+            $payment->fresh()->toArray(),
+            request()
+        );
 
         return $payment;
     }
@@ -110,10 +135,20 @@ class PaymentReceiptService
      */
     public function refund(Payment $payment, $raison = null): Payment
     {
+        $oldValues = $payment->toArray();
+
         $payment->update([
             'statut' => 'refunded',
             'description' => $raison,
         ]);
+
+        // Enregistre le remboursement
+        AuditService::logUpdate(
+            $payment,
+            $oldValues,
+            $payment->fresh()->toArray(),
+            request()
+        );
 
         return $payment;
     }
@@ -123,24 +158,16 @@ class PaymentReceiptService
      */
     public function getFormattedPaymentInfo(Payment $payment): array
     {
+        $status = PaymentStatus::tryFrom($payment->statut);
+        $method = PaymentMethod::tryFrom($payment->methode_paiement);
+
         return [
             'reference' => $payment->reference_recu,
             'montant' => number_format($payment->montant, 2, ',', ' ') . ' ' . $payment->devise,
             'date_creation' => $payment->created_at->format('d/m/Y H:i'),
             'date_paiement' => $payment->date_paiement?->format('d/m/Y H:i') ?? '—',
-            'statut' => [
-                'pending' => 'En attente',
-                'paid' => 'Payé',
-                'cancelled' => 'Annulé',
-                'refunded' => 'Remboursé',
-            ][$payment->statut],
-            'methode' => [
-                'virement' => 'Virement bancaire',
-                'cheque' => 'Chèque',
-                'especes' => 'Espèces',
-                'carte' => 'Carte bancaire',
-                'mobile_money' => 'Paiement mobile',
-            ][$payment->methode_paiement],
+            'statut' => $status?->label() ?? $payment->statut,
+            'methode' => $method?->label() ?? $payment->methode_paiement,
         ];
     }
 }

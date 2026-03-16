@@ -17,6 +17,8 @@ class Profil extends Model
         'ville',
         'code_postal',
         'date_naissance',
+        'lieu_naissance',
+        'numero_registre',
         'num_id',
         'type_id',
         'photo_profil',

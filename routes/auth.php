@@ -1,59 +1,31 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\AuthenticationController;
 
-// Routes d'authentification simples
+// Routes d'authentification avec rate limiting
 Route::middleware('guest')->group(function () {
-    Route::get('/login', function () {
-        return view('auth.login');
-    })->name('login');
+    // Affichage du formulaire de connexion
+    Route::get('/login', [AuthenticationController::class, 'showLoginForm'])
+        ->name('login');
 
-    Route::post('/login', function (\Illuminate\Http\Request $request) {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+    // Soumission du formulaire de connexion - Throttle: 5 tentatives par minute
+    Route::post('/login', [AuthenticationController::class, 'login'])
+        ->middleware('throttle:5,1')
+        ->name('login.post');
 
-        if (auth()->attempt($credentials, $request->filled('remember'))) {
-            return redirect()->intended(route(auth()->user()->role . '.dashboard'));
-        }
+    // Affichage du formulaire d'inscription
+    Route::get('/register', [AuthenticationController::class, 'showRegisterForm'])
+        ->name('register');
 
-        return back()->withErrors(['email' => 'Identifiants invalides'])->onlyInput('email');
-    })->name('login.post');
-
-    Route::get('/register', function () {
-        return view('auth.register');
-    })->name('register');
-
-    Route::post('/register', function (\Illuminate\Http\Request $request) {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed|min:8',
-        ]);
-
-        $user = \App\Models\User::create([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'password' => \Illuminate\Support\Facades\Hash::make($validated['password']),
-            'role' => 'citoyen',
-            'statut' => 'actif',
-        ]);
-
-        $user->profil()->create([]);
-
-        auth()->login($user);
-
-        return redirect()->route('citoyen.dashboard');
-    })->name('register.post');
+    // Soumission du formulaire d'inscription - Throttle: 3 inscriptions par minute
+    Route::post('/register', [AuthenticationController::class, 'register'])
+        ->middleware('throttle:3,1')
+        ->name('register.post');
 });
 
+// Déconnexion - Accessible aux utilisateurs authentifiés
 Route::middleware('auth')->group(function () {
-    Route::post('/logout', function (\Illuminate\Http\Request $request) {
-        auth()->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return redirect('/');
-    })->name('logout');
+    Route::post('/logout', [AuthenticationController::class, 'logout'])
+        ->name('logout');
 });

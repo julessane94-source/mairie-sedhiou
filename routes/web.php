@@ -17,14 +17,55 @@ require __DIR__.'/auth.php';
 // ESPACE ADMIN
 // ============================================
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    // Dashboard avec statistiques & diagnostics
     Route::get('/dashboard', Admin\DashboardController::class . '@index')->name('dashboard');
     
-    // Gestion des utilisateurs
+    // ============ GESTION DES AGENTS ============
+    Route::resource('agents', Admin\AgentController::class);
+    Route::post('agents/{user}/assigner-demande', Admin\AgentController::class . '@assignerDemande')->name('agents.assigner-demande');
+    Route::post('agents/{user}/retirer-demande', Admin\AgentController::class . '@deasigner')->name('agents.deasigner');
+    Route::patch('agents/{user}/statut', Admin\AgentController::class . '@changerStatut')->name('agents.changerStatut');
+    
+    // ============ POINTAGE DES AGENTS ============
+    Route::prefix('pointage')->name('pointage.')->group(function () {
+        Route::get('/', Admin\AttendanceController::class . '@index')->name('index');
+        Route::get('/{agent}', Admin\AttendanceController::class . '@show')->name('show');
+        Route::post('/{agent}/presence', Admin\AttendanceController::class . '@marquerPresence')->name('marquer');
+        Route::post('/{agent}/checkin', Admin\AttendanceController::class . '@checkIn')->name('checkin');
+        Route::post('/{agent}/checkout', Admin\AttendanceController::class . '@checkOut')->name('checkout');
+        Route::post('/{attendance}/justifier', Admin\AttendanceController::class . '@justifierAbsence')->name('justifier');
+        Route::get('/rapport', Admin\AttendanceController::class . '@rapport')->name('rapport');
+    });
+    
+    // ============ PARAMÈTRES DE PLATEFORME ============
+    Route::prefix('parametres')->name('settings.')->group(function () {
+        Route::get('/', Admin\SettingsController::class . '@index')->name('index');
+        Route::patch('/{cle}', Admin\SettingsController::class . '@update')->name('update');
+        
+        Route::get('/application', Admin\SettingsController::class . '@application')->name('application');
+        Route::post('/application', Admin\SettingsController::class . '@updateApplication')->name('application.update');
+        
+        Route::get('/operations', Admin\SettingsController::class . '@operations')->name('operations');
+        Route::post('/operations', Admin\SettingsController::class . '@updateOperations')->name('operations.update');
+        
+        Route::get('/securite', Admin\SettingsController::class . '@security')->name('security');
+        Route::post('/securite', Admin\SettingsController::class . '@updateSecurity')->name('security.update');
+        
+        Route::get('/notifications', Admin\SettingsController::class . '@notifications')->name('notifications');
+        Route::post('/notifications', Admin\SettingsController::class . '@updateNotifications')->name('notifications.update');
+        
+        Route::get('/logs', Admin\SettingsController::class . '@logs')->name('logs');
+        Route::post('/logs/effacer', Admin\SettingsController::class . '@clearLogs')->name('logs.clear');
+        
+        Route::post('/backup', Admin\SettingsController::class . '@backup')->name('backup');
+    });
+    
+    // ============ GESTION DES UTILISATEURS ============
     Route::resource('utilisateurs', Admin\UtilisateurController::class);
     Route::patch('utilisateurs/{user}/role', Admin\UtilisateurController::class . '@changerRole')->name('utilisateurs.changerRole');
     Route::patch('utilisateurs/{user}/statut', Admin\UtilisateurController::class . '@changerStatut')->name('utilisateurs.changerStatut');
     
-    // Gestion des demandes
+    // ============ GESTION DES DEMANDES ============
     Route::resource('demandes', Admin\DemandeController::class)->only(['index', 'show']);
 });
 

@@ -3,37 +3,45 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use App\Models\Demande;
+use App\Services\DashboardService;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
 {
-    public function __construct()
+    private DashboardService $dashboardService;
+
+    public function __construct(DashboardService $dashboardService)
     {
-        $this->middleware('auth');
-        $this->middleware('role:admin');
+        // Middlewares définis dans routes/web.php - plus besoin de les redéclarer
+        $this->dashboardService = $dashboardService;
     }
 
     public function index(): View
     {
-        $totalUtilisateurs = User::count();
-        $totalCitoyens = User::where('role', 'citoyen')->count();
-        $totalAgents = User::where('role', 'agent')->count();
-        $totalDemandes = Demande::count();
-        $demandesEnCours = Demande::where('statut', 'en_cours')->count();
-        $demandesPendantes = Demande::where('statut', 'pendante')->count();
-
-        $dernieresDemandes = Demande::latest()->limit(10)->get();
+        // Récupère toutes les données de manière optimisée
+        $stats = $this->dashboardService->getGlobalStats();
+        $agentStats = $this->dashboardService->getAgentStats();
+        $recentData = $this->dashboardService->getRecentData();
+        $diagnostics = $this->dashboardService->getDiagnostics();
+        $attendance = $this->dashboardService->getAttendanceToday();
+        $charts = $this->dashboardService->getDemandeCharts();
+        $delaiMoyenTraitement = $this->dashboardService->getDelaiMoyenTraitement();
+        $tauxSatisfaction = $this->dashboardService->getTauxSatisfaction();
 
         return view('admin.dashboard', [
-            'totalUtilisateurs' => $totalUtilisateurs,
-            'totalCitoyens' => $totalCitoyens,
-            'totalAgents' => $totalAgents,
-            'totalDemandes' => $totalDemandes,
-            'demandesEnCours' => $demandesEnCours,
-            'demandesPendantes' => $demandesPendantes,
-            'dernieresDemandes' => $dernieresDemandes,
+            'stats' => $stats,
+            'agentStats' => $agentStats,
+            'dernieresDemandes' => $recentData['dernieresDemandes'],
+            'derniersPaiements' => $recentData['derniersPaiements'],
+            'derniersCitoyens' => $recentData['derniersCitoyens'],
+            'diagnostics' => $diagnostics,
+            'agentsPresents' => $attendance['presents'],
+            'agentsAbsents' => $attendance['absents'],
+            'demandesParPriorite' => $charts['parPriorite'],
+            'demandesParStatut' => $charts['parStatut'],
+            'delaiMoyenTraitement' => $delaiMoyenTraitement,
+            'tauxSatisfaction' => $tauxSatisfaction,
         ]);
     }
 }
+
