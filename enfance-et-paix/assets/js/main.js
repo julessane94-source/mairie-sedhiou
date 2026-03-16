@@ -1,0 +1,1 @@
+document.addEventListener("DOMContentLoaded",()=>{ console.log("Enfance et Paix - Site chargé avec succès"); });

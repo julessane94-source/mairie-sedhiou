@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiche Technique — Mairie DIENDE</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f0f2f5;
+            color: #1a1a2e;
+            padding: 40px 20px;
+        }
+
+        .page {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+        }
+
+        /* ── EN-TÊTE ── */
+        .header {
+            background: linear-gradient(135deg, #1a1a6e 0%, #2d2d8e 50%, #667eea 100%);
+            color: #fff;
+            padding: 50px 50px 40px;
+            position: relative;
+        }
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #f7971e, #ffd200, #667eea, #764ba2);
+        }
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+        .logo-circle {
+            width: 64px; height: 64px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+            border: 2px solid rgba(255,255,255,0.4);
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .header .subtitle {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-top: 4px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .badge {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 20px;
+            padding: 5px 14px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── CORPS ── */
+        .body { padding: 40px 50px; }
+
+        /* Section */
+        .section { margin-bottom: 40px; }
+        .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #667eea;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e8ecf8;
+        }
+
+        /* Description */
+        .description {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            font-size: 15px;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        /* Grille de cartes */
+        .grid { display: grid; gap: 16px; }
+        .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        .grid-3 { grid-template-columns: repeat(3, 1fr); }
+
+        .card {
+            background: #f8f9ff;
+            border: 1px solid #e2e6fa;
+            border-radius: 10px;
+            padding: 18px 20px;
+        }
+        .card-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .card-title {
+            font-weight: 700;
+            font-size: 13px;
+            color: #1a1a6e;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .card-content {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.6;
+        }
+        .card-content ul { padding-left: 14px; }
+        .card-content li { margin-bottom: 3px; }
+
+        /* Stack tech */
+        .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tech-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            border: 1.5px solid #e2e6fa;
+            border-radius: 24px;
+            padding: 6px 14px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1a1a6e;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .tech-pill .dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .blue   { background: #4285f4; }
+        .orange { background: #f97316; }
+        .green  { background: #22c55e; }
+        .purple { background: #a855f7; }
+        .red    { background: #ef4444; }
+        .teal   { background: #14b8a6; }
+        .indigo { background: #6366f1; }
+        .yellow { background: #eab308; }
+
+        /* Tableau URL */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        th {
+            background: #1a1a6e;
+            color: #fff;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        th:first-child { border-radius: 8px 0 0 0; }
+        th:last-child  { border-radius: 0 8px 0 0; }
+        td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #eef0f8;
+            color: #444;
+            vertical-align: middle;
+        }
+        tr:last-child td { border-bottom: none; }
+        tr:nth-child(even) td { background: #f8f9ff; }
+        td code {
+            background: #eef0f8;
+            border-radius: 4px;
+            padding: 2px 7px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #2d2d8e;
+        }
+        .role-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .rb-admin  { background: #fce7f3; color: #9d174d; }
+        .rb-agent  { background: #dbeafe; color: #1e40af; }
+        .rb-public { background: #d1fae5; color: #065f46; }
+        .rb-tous   { background: #f3f4f6; color: #374151; }
+
+        /* N°CIT */
+        .cit-box {
+            background: linear-gradient(135deg, #1a1a6e, #667eea);
+            border-radius: 12px;
+            padding: 24px 28px;
+            color: #fff;
+        }
+        .cit-formula {
+            font-family: 'Courier New', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin: 12px 0;
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            padding: 10px 16px;
+            display: inline-block;
+        }
+        .cit-desc { font-size: 13px; opacity: 0.85; line-height: 1.7; margin-top: 10px; }
+        .cit-example {
+            margin-top: 14px;
+            font-size: 13px;
+            opacity: 0.9;
+        }
+        .cit-example code {
+            background: rgba(255,255,255,0.2);
+            border-radius: 6px;
+            padding: 3px 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        /* Sécurité */
+        .sec-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        .sec-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: #f8f9ff;
+            border-radius: 8px;
+            padding: 14px;
+            border: 1px solid #e2e6fa;
+        }
+        .sec-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .sec-title { font-weight: 700; font-size: 13px; color: #1a1a6e; margin-bottom: 4px; }
+        .sec-text  { font-size: 12px; color: #666; line-height: 1.5; }
+
+        /* Admin compte */
+        .admin-box {
+            background: #fffbeb;
+            border: 1.5px solid #fde68a;
+            border-radius: 10px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .admin-icon { font-size: 28px; }
+        .admin-info { font-size: 13px; color: #555; line-height: 1.7; }
+        .admin-info strong { color: #1a1a6e; }
+
+        /* Pied de page */
+        .footer {
+            background: #1a1a6e;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 18px;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+        .footer strong { color: #fff; }
+
+        @media print {
+            body { background: #fff; padding: 0; }
+            .page { box-shadow: none; border-radius: 0; }
+        }
+        @media (max-width: 640px) {
+            .body { padding: 24px 20px; }
+            .header { padding: 30px 20px 24px; }
+            .grid-2, .grid-3, .sec-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- EN-TÊTE -->
+    <div class="header">
+        <div class="header-top">
+            <div class="logo-circle">🏛️</div>
+            <div>
+                <h1>Mairie DIENDE</h1>
+                <div class="subtitle">Plateforme de Services Municipaux en Ligne</div>
+            </div>
+        </div>
+        <div class="badges">
+            <span class="badge">📄 Fiche Technique</span>
+            <span class="badge">🗓️ Version 1.0 — 2026</span>
+            <span class="badge">🔒 Production Ready</span>
+            <span class="badge">🌐 Web Application</span>
+        </div>
+    </div>
+
+    <div class="body">
+
+        <!-- PRÉSENTATION -->
+        <div class="section">
+            <div class="section-title">Présentation du projet</div>
+            <div class="description">
+                <strong>Mairie DIENDE</strong> est une application web municipale permettant aux citoyens d'accéder en ligne
+                aux services administratifs de leur commune. Les citoyens peuvent soumettre des demandes (extraits de naissance,
+                certificats de résidence, actes de mariage…), suivre leur traitement en temps réel et communiquer
+                avec les services de la mairie. Les agents municipaux traitent les demandes depuis un espace dédié,
+                tandis que l'administrateur dispose d'un tableau de bord complet de pilotage.
+            </div>
+        </div>
+
+        <!-- STACK TECHNOLOGIQUE -->
+        <div class="section">
+            <div class="section-title">Stack Technologique</div>
+            <div style="margin-bottom: 20px;">
+                <div style="font-weight:700;font-size:13px;color:#444;margin-bottom:10px;">🖥️ Backend</div>
+                <div class="tech-stack">
+                    <div class="tech-pill"><span class="dot blue"></span> PHP 8.2</div>
+                    <div class="tech-pill"><span class="dot blue"></span> PDO (PostgreSQL)</div>
+                    <div class="tech-pill"><span class="dot blue"></span> Serveur PHP intégré</div>
+                    <div class="tech-pill"><span class="dot teal"></span> Sessions PHP natives</div>
+                    <div class="tech-pill"><span class="dot orange"></span> Bcrypt (password_hash)</div>
+                </div>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <div style="font-weight:700;font-size:13px;color:#444;margin-bottom:10px;">🎨 Frontend</div>
+                <div class="tech-stack">
+                    <div class="tech-pill"><span class="dot purple"></span> HTML5 / CSS3</div>
+                    <div class="tech-pill"><span class="dot indigo"></span> Bootstrap 5.3</div>
+                    <div class="tech-pill"><span class="dot yellow"></span> Font Awesome 6</div>
+                    <div class="tech-pill"><span class="dot purple"></span> JavaScript Vanilla</div>
+                    <div class="tech-pill"><span class="dot teal"></span> CSS Flexbox / Grid</div>
+                </div>
+            </div>
+            <div>
+                <div style="font-weight:700;font-size:13px;color:#444;margin-bottom:10px;">🗄️ Base de données</div>
+                <div class="tech-stack">
+                    <div class="tech-pill"><span class="dot blue"></span> PostgreSQL 14+</div>
+                    <div class="tech-pill"><span class="dot green"></span> 7 tables relationnelles</div>
+                    <div class="tech-pill"><span class="dot teal"></span> SERIAL / RETURNING id</div>
+                    <div class="tech-pill"><span class="dot orange"></span> Index optimisés</div>
+                    <div class="tech-pill"><span class="dot red"></span> Transactions ACID</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- N°CIT -->
+        <div class="section">
+            <div class="section-title">Numéro Citoyen — N°CIT</div>
+            <div class="cit-box">
+                <div style="font-size:13px;opacity:.8;text-transform:uppercase;letter-spacing:1px;">Format officiel</div>
+                <div class="cit-formula">CIT-AAAAMMJJ-NNNNN</div>
+                <div class="cit-desc">
+                    <strong style="color:#fff;">AAAAMMJJ</strong> — Date de naissance du citoyen (sans séparateurs)<br>
+                    <strong style="color:#fff;">NNNNN</strong> — Numéro de registre unique sur 5 chiffres (ID auto-incrémenté)<br><br>
+                    Le N°CIT est généré automatiquement lors de l'inscription via <code style="background:rgba(255,255,255,.2);padding:1px 6px;border-radius:4px;">INSERT … RETURNING id</code> (PostgreSQL) puis mis à jour en base dans la même transaction.
+                </div>
+                <div class="cit-example">
+                    Exemples : <code>CIT-19900522-00001</code> &nbsp;·&nbsp; <code>CIT-20011201-00042</code> &nbsp;·&nbsp; <code>CIT-19850109-00127</code>
+                </div>
+            </div>
+        </div>
+
+        <!-- ARCHITECTURE -->
+        <div class="section">
+            <div class="section-title">Architecture & Structure</div>
+            <div class="grid grid-3">
+                <div class="card">
+                    <div class="card-icon">⚙️</div>
+                    <div class="card-title">Noyau</div>
+                    <div class="card-content">
+                        <ul>
+                            <li><code>config.php</code></li>
+                            <li><code>db_init.php</code></li>
+                            <li><code>login.php</code></li>
+                            <li><code>logout.php</code></li>
+                            <li><code>index.php</code></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🛡️</div>
+                    <div class="card-title">Sécurité</div>
+                    <div class="card-content">
+                        <ul>
+                            <li><code>rate_limiter.php</code></li>
+                            <li><code>logger.php</code></li>
+                            <li>Tokens CSRF</li>
+                            <li>Hachage Bcrypt</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🗃️</div>
+                    <div class="card-title">Base de données</div>
+                    <div class="card-content">
+                        <ul>
+                            <li>users</li>
+                            <li>citoyens</li>
+                            <li>demandes</li>
+                            <li>messages</li>
+                            <li>infos_mairie</li>
+                            <li>login_attempts</li>
+                            <li>activity_logs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RÔLES & ACCÈS -->
+        <div class="section">
+            <div class="section-title">Rôles utilisateurs & Pages</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>URL</th>
+                        <th>Description</th>
+                        <th>Accès</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>/</code></td>
+                        <td>Accueil public — présentation des services</td>
+                        <td><span class="role-badge rb-tous">Tous</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>/login.php</code></td>
+                        <td>Connexion avec protection anti-brute-force</td>
+                        <td><span class="role-badge rb-tous">Tous</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>/public/register.php</code></td>
+                        <td>Inscription citoyen + génération N°CIT</td>
+                        <td><span class="role-badge rb-public">Public</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>/public/dashboard.php</code></td>
+                        <td>Espace citoyen — suivi des demandes</td>
+                        <td><span class="role-badge rb-public">Citoyen</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>/admin/dashboard.php</code></td>
+                        <td>Tableau de bord administrateur</td>
+                        <td><span class="role-badge rb-admin">Admin</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>/admin/liste_citoyens.php</code></td>
+                        <td>Registre civil — liste paginée + recherche</td>
+                        <td><span class="role-badge rb-admin">Admin</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>/admin/agents.php</code></td>
+                        <td>Gestion des comptes agents</td>
+                        <td><span class="role-badge rb-admin">Admin</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>/admin/demandes.php</code></td>
+                        <td>Supervision de toutes les demandes</td>
+                        <td><span class="role-badge rb-admin">Admin</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>/admin/parametres.php</code></td>
+                        <td>Paramètres de la plateforme</td>
+                        <td><span class="role-badge rb-admin">Admin</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>/agent/dashboard.php</code></td>
+                        <td>Tableau de bord agent municipal</td>
+                        <td><span class="role-badge rb-agent">Agent</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>/agent/traiter_demande.php</code></td>
+                        <td>Traitement et validation des demandes</td>
+                        <td><span class="role-badge rb-agent">Agent</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>/agent/changer_mot_de_passe.php</code></td>
+                        <td>Modification du mot de passe agent</td>
+                        <td><span class="role-badge rb-agent">Agent</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- SÉCURITÉ -->
+        <div class="section">
+            <div class="section-title">Mesures de sécurité</div>
+            <div class="sec-grid">
+                <div class="sec-item">
+                    <div class="sec-icon">🔒</div>
+                    <div>
+                        <div class="sec-title">Hachage Bcrypt</div>
+                        <div class="sec-text">Tous les mots de passe sont hachés avec <code>password_hash()</code> (coût adaptatif). Aucun mot de passe stocké en clair.</div>
+                    </div>
+                </div>
+                <div class="sec-item">
+                    <div class="sec-icon">🛡️</div>
+                    <div>
+                        <div class="sec-title">Tokens CSRF</div>
+                        <div class="sec-text">Chaque formulaire POST inclut un token CSRF aléatoire (32 octets hex) vérifié avec <code>hash_equals()</code>.</div>
+                    </div>
+                </div>
+                <div class="sec-item">
+                    <div class="sec-icon">⏱️</div>
+                    <div>
+                        <div class="sec-title">Rate Limiter</div>
+                        <div class="sec-text">Blocage automatique après 5 tentatives échouées (fenêtre 15 min). Compte à rebours côté client.</div>
+                    </div>
+                </div>
+                <div class="sec-item">
+                    <div class="sec-icon">📋</div>
+                    <div>
+                        <div class="sec-title">Journalisation</div>
+                        <div class="sec-text">Système de logs multi-niveaux (INFO, WARNING, ERROR, AUDIT, SECURITY) en base PostgreSQL et fichiers.</div>
+                    </div>
+                </div>
+                <div class="sec-item">
+                    <div class="sec-icon">🔄</div>
+                    <div>
+                        <div class="sec-title">Régénération de session</div>
+                        <div class="sec-text"><code>session_regenerate_id(true)</code> à chaque connexion réussie pour prévenir la fixation de session.</div>
+                    </div>
+                </div>
+                <div class="sec-item">
+                    <div class="sec-icon">🗑️</div>
+                    <div>
+                        <div class="sec-title">Requêtes préparées</div>
+                        <div class="sec-text">100 % des requêtes SQL utilisent des requêtes préparées PDO avec paramètres liés — protection totale contre l'injection SQL.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPTE ADMIN -->
+        <div class="section">
+            <div class="section-title">Compte Administrateur par défaut</div>
+            <div class="admin-box">
+                <div class="admin-icon">👤</div>
+                <div class="admin-info">
+                    <strong>Email :</strong> julessane94@gmail.com &nbsp;·&nbsp;
+                    <strong>Mot de passe :</strong> 123456 &nbsp;·&nbsp;
+                    <strong>Rôle :</strong> admin<br>
+                    Ce compte est créé automatiquement au premier démarrage par <code>db_init.php</code> si absent.
+                    Il est fortement recommandé de changer le mot de passe en production.
+                </div>
+            </div>
+        </div>
+
+        <!-- TYPES DE DEMANDES -->
+        <div class="section">
+            <div class="section-title">Services disponibles</div>
+            <div class="grid grid-3">
+                <div class="card">
+                    <div class="card-icon">📜</div>
+                    <div class="card-title">État Civil</div>
+                    <div class="card-content">Extrait de naissance, Déclaration de naissance</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💍</div>
+                    <div class="card-title">Mariage</div>
+                    <div class="card-content">Certificat de mariage</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">✝️</div>
+                    <div class="card-title">Décès</div>
+                    <div class="card-content">Certificat de décès</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🏠</div>
+                    <div class="card-title">Résidence</div>
+                    <div class="card-content">Certificat de résidence</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">💬</div>
+                    <div class="card-title">Messagerie</div>
+                    <div class="card-content">Échanges internes citoyen ↔ agents</div>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📰</div>
+                    <div class="card-title">Informations</div>
+                    <div class="card-content">Actualités et annonces municipales</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- STATUTS DEMANDES -->
+        <div class="section">
+            <div class="section-title">Cycle de vie d'une demande</div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                <span style="background:#fff3cd;border:1px solid #ffc107;border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;color:#856404;">⏳ En attente</span>
+                <span style="color:#aaa;font-size:18px;">→</span>
+                <span style="background:#cff4fc;border:1px solid #0dcaf0;border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;color:#055160;">🔄 En cours</span>
+                <span style="color:#aaa;font-size:18px;">→</span>
+                <span style="background:#d1e7dd;border:1px solid #198754;border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;color:#0f5132;">✅ Traité</span>
+                <span style="color:#aaa;font-size:18px;margin-left:8px;">ou</span>
+                <span style="background:#f8d7da;border:1px solid #dc3545;border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;color:#842029;margin-left:8px;">❌ Rejeté</span>
+            </div>
+        </div>
+
+    </div><!-- /body -->
+
+    <!-- PIED DE PAGE -->
+    <div class="footer">
+        <strong>Mairie DIENDE</strong> — Plateforme de Services Municipaux &nbsp;·&nbsp; PHP 8.2 + PostgreSQL &nbsp;·&nbsp; Version 1.0 &nbsp;·&nbsp; 2026
+    </div>
+
+</div>
+</body>
+</html>

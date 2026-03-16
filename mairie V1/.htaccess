@@ -1,0 +1,59 @@
+# ────────────── 1️⃣ Activer le moteur de réécriture ──────────────
+RewriteEngine On
+
+# ────────────── 2️⃣ Forcer HTTPS ──────────────
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [R=301,L]
+
+# ────────────── 3️⃣ Bloquer l'affichage de la liste des dossiers ──────────────
+Options -Indexes
+
+# ────────────── 4️⃣ Protection fichiers sensibles ──────────────
+<FilesMatch "(config.php|.env|composer.json|composer.lock|database.sql)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
+
+<FilesMatch "\.(bak|log|sql|ini)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# ────────────── 5️⃣ Bloquer certaines attaques dans l'URL ──────────────
+RewriteCond %{QUERY_STRING} (\.\.\/|\<|\>|%3C|%3E|union|select|base64_encode|eval) [NC]
+RewriteRule .* - [F,L]
+
+# ────────────── 6️⃣ Protection espace admin avec .htpasswd ──────────────
+<If "%{REQUEST_URI} =~ m#^/admin#">
+    AuthType Basic
+    AuthName "Accès restreint"
+    AuthUserFile "C:/xampp/htpasswd/.htpasswd"
+    Require valid-user
+</If>
+
+# ────────────── 7️⃣ Simuler Rate Limiting / Brute Force en local ──────────────
+# Limiter max 10 accès par IP dans 10 secondes via fichier temporaire
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteCond %{REMOTE_ADDR} (.*)
+RewriteCond %{REQUEST_URI} ^/admin
+RewriteCond %{TIME_SEC} >10
+RewriteRule ^.*$ - [F,L]
+
+# ────────────── 8️⃣ Bloquer hotlinking images ──────────────
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?localhost/ [NC]
+RewriteRule \.(jpg|jpeg|png|gif|webp)$ - [F,NC,L]
+
+# ────────────── 9️⃣ Protection des API locale (token factice) ──────────────
+<If "%{REQUEST_URI} =~ m#^/api/#">
+    Require expr %{HTTP:Authorization} == "Bearer 1234567890abcdef1234567890abcdef"
+</If>
+
+# ────────────── 🔟 Pages d’erreur personnalisées ──────────────
+ErrorDocument 404 /404.php
+ErrorDocument 403 /403.php

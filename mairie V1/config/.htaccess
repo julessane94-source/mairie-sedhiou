@@ -1,0 +1,9 @@
+# Bloquer l'accès direct à tous les fichiers
+Order Deny,Allow
+Deny from all
+
+# Autoriser uniquement certaines extensions si nécessaire
+<FilesMatch "\.(json)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>

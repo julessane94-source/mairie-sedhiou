@@ -1,0 +1,9 @@
+[2026-03-15 15:23:31] [AUDIT] user=1 ip=::1 action=LOGOUT | Utilisateur #1 (julessane94@gmail.com) déconnecté
+[2026-03-15 15:27:21] [AUDIT] user=anon ip=::1 action=LOGIN_SUCCESS | Utilisateur #3 (omba@gmail.com) connecté — rôle: public
+[2026-03-15 15:29:35] [AUDIT] user=3 ip=::1 action=LOGOUT | Utilisateur #3 (omba@gmail.com) déconnecté
+[2026-03-15 15:29:48] [AUDIT] user=anon ip=::1 action=LOGIN_SUCCESS | Utilisateur #1 (julessane94@gmail.com) connecté — rôle: admin
+[2026-03-15 15:31:01] [AUDIT] user=1 ip=::1 action=LOGOUT | Utilisateur #1 (julessane94@gmail.com) déconnecté
+[2026-03-15 15:31:28] [AUDIT] user=anon ip=::1 action=LOGIN_SUCCESS | Utilisateur #2 (aminasy@gmail.com) connecté — rôle: agent
+[2026-03-15 15:34:47] [AUDIT] user=2 ip=::1 action=LOGOUT | Utilisateur #2 (aminasy@gmail.com) déconnecté
+[2026-03-15 15:34:58] [AUDIT] user=anon ip=::1 action=LOGIN_SUCCESS | Utilisateur #1 (julessane94@gmail.com) connecté — rôle: admin
+[2026-03-15 15:43:48] [AUDIT] user=1 ip=::1 action=LOGOUT | Utilisateur #1 (julessane94@gmail.com) déconnecté

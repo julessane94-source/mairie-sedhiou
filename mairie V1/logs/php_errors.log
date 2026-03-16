@@ -1,0 +1,5 @@
+[15-Mar-2026 15:32:18 Europe/Paris] PHP Warning:  require_once(../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\admin\export.php on line 11
+[15-Mar-2026 15:32:18 Europe/Paris] PHP Fatal error:  Uncaught Error: Failed opening required '../vendor/autoload.php' (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\admin\export.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\mairie\admin\export.php on line 11

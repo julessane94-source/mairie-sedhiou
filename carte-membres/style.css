@@ -1,0 +1,60 @@
+/* style.css */
+:root {
+    --primary: #3498db;
+    --secondary: #2980b9;
+    --success: #27ae60;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --dark: #2c3e50;
+    --light: #ecf0f1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--light);
+    color: var(--dark);
+}
+
+/* Cartes */
+.carte-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 20px;
+}
+
+@media print {
+    .carte-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 5mm;
+    }
+    .no-print {
+        display: none;
+    }
+}
+
+/* Upload zone */
+.dropzone {
+    border: 3px dashed var(--primary);
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dropzone:hover {
+    background: rgba(52, 152, 219, 0.1);
+}
+
+.dropzone.dragover {
+    background: rgba(52, 152, 219, 0.2);
+    border-color: var(--secondary);
+}

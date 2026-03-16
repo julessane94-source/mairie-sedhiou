@@ -1,0 +1,12 @@
+[2026-03-15 16:01:11] [SECURITY] user=anon ip=::1 action=LOGIN_FAILURE | Échec pour admin@mairie.fr depuis ::1
+[2026-03-15 16:01:26] [SECURITY] user=anon ip=::1 action=LOGIN_FAILURE | Échec pour julessane94@gmail.com depuis ::1
+[2026-03-15 16:01:42] [SECURITY] user=anon ip=::1 action=LOGIN_FAILURE | Échec pour julessane94@gmail.com depuis ::1
+[2026-03-15 16:02:01] [SECURITY] user=anon ip=::1 action=LOGIN_FAILURE | Échec pour admin@mairie.fr depuis ::1
+[2026-03-15 16:02:19] [SECURITY] user=anon ip=::1 action=LOGIN_FAILURE | Échec pour admin@mairie.fr depuis ::1
+[2026-03-15 16:12:05] [SECURITY] user=anon ip=::1 action=LOGIN_FAILURE | Échec pour julessane94@gmail.com depuis ::1
+[2026-03-15 16:12:46] [SECURITY] user=anon ip=::1 action=LOGIN_FAILURE | Échec pour julessane94@gmail.com depuis ::1
+[2026-03-15 15:23:31] [SECURITY] user=anon ip=::1 action=LOGIN_FAILURE | Échec pour julessane94@gmail.com depuis ::1
+[2026-03-15 15:23:54] [SECURITY] user=anon ip=::1 action=LOGIN_FAILURE | Échec pour amiba@gmail.com depuis ::1
+[2026-03-15 15:24:15] [SECURITY] user=anon ip=::1 action=LOGIN_FAILURE | Échec pour abdi@gmail.com depuis ::1
+[2026-03-15 15:45:18] [SECURITY] user=anon ip=::1 action=LOGIN_FAILURE | Échec pour amiba@gmail.com depuis ::1
+[2026-03-15 15:51:27] [SECURITY] user=anon ip=::1 action=LOGIN_FAILURE | Échec pour julessane94@gmail.com depuis ::1

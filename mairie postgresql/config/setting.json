@@ -1,0 +1,14 @@
+echo '{
+    "site_name": "Mairie Services",
+    "email_contact": "contact@mairie.fr",
+    "telephone": "01 23 45 67 89",
+    "adresse": "Place de la Mairie, 75000 Paris",
+    "horaires": "Lundi-Vendredi: 8h-17h, Samedi: 9h-12h",
+    "facebook_url": "#",
+    "twitter_url": "#",
+    "linkedin_url": "#",
+    "instagram_url": "#",
+    "maintenance_mode": false,
+    "registration_open": true
+}' > config/settings.json
+chmod 666 config/settings.json

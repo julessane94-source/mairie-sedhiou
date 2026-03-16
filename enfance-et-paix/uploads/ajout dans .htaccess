@@ -1,0 +1,4 @@
+<Directory "/uploads">
+  php_flag engine off
+  Options -ExecCGI
+</Directory>

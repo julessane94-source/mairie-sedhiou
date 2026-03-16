@@ -1,0 +1,195 @@
+[08-Mar-2026 18:02:53 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 18:02:53 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 18:05:44 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 18:05:44 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 18:07:23 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 18:07:23 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 18:08:16 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 18:08:16 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 18:08:24 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 18:08:24 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 18:11:51 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 18:11:51 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 18:11:52 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 18:11:52 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 18:13:30 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 18:13:30 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 18:13:33 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 18:13:33 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:15:18 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:15:18 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:15:19 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:15:19 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:15:21 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:15:21 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:17:18 Europe/Paris] PHP Warning:  Undefined array key "commentaire_reponse" in C:\xampp\htdocs\mairie\admin\voir_demande.php on line 161
+[08-Mar-2026 17:17:38 Europe/Paris] PHP Warning:  Undefined array key "commentaire_reponse" in C:\xampp\htdocs\mairie\admin\voir_demande.php on line 161
+[08-Mar-2026 17:18:03 Europe/Paris] PHP Warning:  Undefined array key "commentaire_reponse" in C:\xampp\htdocs\mairie\admin\voir_demande.php on line 161
+[08-Mar-2026 17:33:01 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:33:01 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:33:52 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:33:52 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:33:54 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:33:54 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:24:14 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:24:14 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:24:21 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:24:21 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:33:12 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:33:12 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:33:14 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:33:14 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:33:15 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:33:15 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:33:16 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:33:16 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:33:18 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[08-Mar-2026 17:33:18 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:38:43 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:38:43 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:45:54 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:45:54 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:50:05 Europe/Paris] PHP Warning:  include(public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:50:05 Europe/Paris] PHP Warning:  include(): Failed opening 'public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:55:30 Europe/Paris] PHP Warning:  include(publicsidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:55:30 Europe/Paris] PHP Warning:  include(): Failed opening 'publicsidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:55:40 Europe/Paris] PHP Warning:  include(publicsidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:55:40 Europe/Paris] PHP Warning:  include(): Failed opening 'publicsidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:55:43 Europe/Paris] PHP Warning:  include(publicsidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:55:43 Europe/Paris] PHP Warning:  include(): Failed opening 'publicsidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:56:37 Europe/Paris] PHP Warning:  include(public/../public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:56:37 Europe/Paris] PHP Warning:  include(): Failed opening 'public/../public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:58:09 Europe/Paris] PHP Warning:  include(public1): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:58:09 Europe/Paris] PHP Warning:  include(): Failed opening 'public1' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:58:42 Europe/Paris] PHP Warning:  include(publicC:\xampp\htdocs\mairie\public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:58:42 Europe/Paris] PHP Warning:  include(): Failed opening 'publicC:\xampp\htdocs\mairie\public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:58:44 Europe/Paris] PHP Warning:  include(publicC:\xampp\htdocs\mairie\public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:58:44 Europe/Paris] PHP Warning:  include(): Failed opening 'publicC:\xampp\htdocs\mairie\public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:58:52 Europe/Paris] PHP Warning:  include(publicC:\xampp\htdocs\mairie\public/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 11:58:52 Europe/Paris] PHP Warning:  include(): Failed opening 'publicC:\xampp\htdocs\mairie\public/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\public\messagerie.php on line 85
+[09-Mar-2026 12:22:33 Europe/Paris] PHP Deprecated:  round(): Passing null to parameter #1 ($num) of type int|float is deprecated in C:\xampp\htdocs\mairie\admin\statistiques.php on line 140
+[09-Mar-2026 12:28:18 Europe/Paris] PHP Fatal error:  Uncaught Error: Call to undefined method PDO::fetchColumn() in C:\xampp\htdocs\mairie\admin\messages.php:33
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\mairie\admin\messages.php on line 33
+[09-Mar-2026 12:29:01 Europe/Paris] PHP Fatal error:  Uncaught Error: Call to undefined method PDO::fetchColumn() in C:\xampp\htdocs\mairie\admin\messages.php:33
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\mairie\admin\messages.php on line 33
+[09-Mar-2026 12:29:49 Europe/Paris] PHP Fatal error:  Uncaught Error: Call to undefined method PDO::fetchColumn() in C:\xampp\htdocs\mairie\admin\messages.php:33
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\mairie\admin\messages.php on line 33
+[09-Mar-2026 12:31:17 Europe/Paris] PHP Warning:  Undefined array key "dest_role" in C:\xampp\htdocs\mairie\admin\messages.php on line 235
+[09-Mar-2026 12:45:31 Europe/Paris] PHP Warning:  require_once(../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\admin\export.php on line 11
+[09-Mar-2026 12:45:31 Europe/Paris] PHP Fatal error:  Uncaught Error: Failed opening required '../vendor/autoload.php' (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\admin\export.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\mairie\admin\export.php on line 11
+[09-Mar-2026 12:45:47 Europe/Paris] PHP Warning:  require_once(../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\admin\export.php on line 11
+[09-Mar-2026 12:45:47 Europe/Paris] PHP Fatal error:  Uncaught Error: Failed opening required '../vendor/autoload.php' (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\admin\export.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\mairie\admin\export.php on line 11
+[09-Mar-2026 12:45:58 Europe/Paris] PHP Warning:  require_once(../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\admin\export.php on line 11
+[09-Mar-2026 12:45:58 Europe/Paris] PHP Fatal error:  Uncaught Error: Failed opening required '../vendor/autoload.php' (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\admin\export.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\mairie\admin\export.php on line 11
+[10-Mar-2026 21:01:51 Europe/Paris] PHP Warning:  require_once(../vendor/autoload.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\admin\export.php on line 11
+[10-Mar-2026 21:01:51 Europe/Paris] PHP Fatal error:  Uncaught Error: Failed opening required '../vendor/autoload.php' (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\admin\export.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\mairie\admin\export.php on line 11
+[10-Mar-2026 20:06:52 Europe/Paris] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'd.commentaire_reponse' in 'field list' in C:\xampp\htdocs\mairie\admin\export.php:76
+Stack trace:
+#0 C:\xampp\htdocs\mairie\admin\export.php(76): PDO->prepare('\n    SELECT \n  ...')
+#1 {main}
+  thrown in C:\xampp\htdocs\mairie\admin\export.php on line 76
+[10-Mar-2026 20:39:21 Europe/Paris] PHP Warning:  Undefined array key "dest_role" in C:\xampp\htdocs\mairie\admin\messages.php on line 235
+[10-Mar-2026 20:50:02 Europe/Paris] PHP Warning:  include(navbar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\agent\traiter_demande.php on line 125
+[10-Mar-2026 20:50:03 Europe/Paris] PHP Warning:  include(): Failed opening 'navbar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\agent\traiter_demande.php on line 125
+[10-Mar-2026 20:50:37 Europe/Paris] PHP Warning:  include(navbar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\agent\traiter_demande.php on line 125
+[10-Mar-2026 20:50:37 Europe/Paris] PHP Warning:  include(): Failed opening 'navbar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\agent\traiter_demande.php on line 125
+[10-Mar-2026 20:29:25 Europe/Paris] PHP Fatal error:  Uncaught Error: Call to undefined method PDO::fetchColumn() in C:\xampp\htdocs\mairie\agent\statistiques.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\xampp\htdocs\mairie\agent\statistiques.php on line 11
+[10-Mar-2026 20:39:26 Europe/Paris] PHP Warning:  Undefined array key "dest_role" in C:\xampp\htdocs\mairie\admin\messages.php on line 235
+[10-Mar-2026 20:44:07 Europe/Paris] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\mairie\admin\parametres.php on line 123
+[10-Mar-2026 20:51:38 Europe/Paris] PHP Warning:  mail(): Failed to connect to mailserver at &quot;localhost&quot; port 25, verify your &quot;SMTP&quot; and &quot;smtp_port&quot; setting in php.ini or use ini_set() in C:\xampp\htdocs\mairie\admin\parametres.php on line 123
+[10-Mar-2026 20:58:28 Europe/Paris] PHP Warning:  Undefined array key "dest_role" in C:\xampp\htdocs\mairie\admin\messages.php on line 235
+[10-Mar-2026 20:07:11 Europe/Paris] PHP Warning:  Undefined array key "dest_role" in C:\xampp\htdocs\mairie\admin\messages.php on line 235
+[11-Mar-2026 13:43:13 Europe/Paris] PHP Warning:  Undefined array key "dest_role" in C:\xampp\htdocs\mairie\admin\messages.php on line 235
+[11-Mar-2026 13:34:21 Europe/Paris] PHP Warning:  Undefined array key "dest_role" in C:\xampp\htdocs\mairie\admin\messages.php on line 235
+[11-Mar-2026 13:35:00 Europe/Paris] PHP Warning:  include(admin/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\admin\lire_message.php on line 69
+[11-Mar-2026 13:35:00 Europe/Paris] PHP Warning:  include(): Failed opening 'admin/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\admin\lire_message.php on line 69
+[12-Mar-2026 09:31:43 Europe/Paris] PHP Warning:  Undefined array key "dest_role" in C:\xampp\htdocs\mairie\admin\messages.php on line 235
+[12-Mar-2026 09:32:07 Europe/Paris] PHP Warning:  Undefined array key "dest_role" in C:\xampp\htdocs\mairie\admin\messages.php on line 235
+[14-Mar-2026 11:51:51 Europe/Paris] PHP Warning:  include(navbar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\agent\traiter_demande.php on line 125
+[14-Mar-2026 11:51:51 Europe/Paris] PHP Warning:  include(): Failed opening 'navbar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\agent\traiter_demande.php on line 125
+[14-Mar-2026 11:57:07 Europe/Paris] PHP Warning:  include(navbar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\agent\traiter_demande.php on line 125
+[14-Mar-2026 11:57:07 Europe/Paris] PHP Warning:  include(): Failed opening 'navbar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\agent\traiter_demande.php on line 125
+[14-Mar-2026 11:57:08 Europe/Paris] PHP Warning:  include(navbar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\agent\traiter_demande.php on line 125
+[14-Mar-2026 11:57:08 Europe/Paris] PHP Warning:  include(): Failed opening 'navbar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\agent\traiter_demande.php on line 125
+[14-Mar-2026 11:57:09 Europe/Paris] PHP Warning:  include(navbar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\agent\traiter_demande.php on line 125
+[14-Mar-2026 11:57:09 Europe/Paris] PHP Warning:  include(): Failed opening 'navbar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\agent\traiter_demande.php on line 125
+[14-Mar-2026 11:58:31 Europe/Paris] PHP Warning:  include(navbar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\agent\traiter_demande.php on line 126
+[14-Mar-2026 11:58:31 Europe/Paris] PHP Warning:  include(): Failed opening 'navbar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\agent\traiter_demande.php on line 126
+[14-Mar-2026 11:56:54 Europe/Paris] PHP Warning:  Undefined array key "dest_role" in C:\xampp\htdocs\mairie\admin\messages.php on line 235
+[14-Mar-2026 11:24:15 Europe/Paris] PHP Warning:  include(agent/sidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\agent\lire_message.php on line 69
+[14-Mar-2026 11:24:15 Europe/Paris] PHP Warning:  include(): Failed opening 'agent/sidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\agent\lire_message.php on line 69
+[14-Mar-2026 11:27:41 Europe/Paris] PHP Warning:  include(agentsidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\agent\lire_message.php on line 69
+[14-Mar-2026 11:27:41 Europe/Paris] PHP Warning:  include(): Failed opening 'agentsidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\agent\lire_message.php on line 69
+[14-Mar-2026 11:27:42 Europe/Paris] PHP Warning:  include(agentsidebar.php): Failed to open stream: No such file or directory in C:\xampp\htdocs\mairie\agent\lire_message.php on line 69
+[14-Mar-2026 11:27:42 Europe/Paris] PHP Warning:  include(): Failed opening 'agentsidebar.php' for inclusion (include_path='\xampp\php\PEAR') in C:\xampp\htdocs\mairie\agent\lire_message.php on line 69
+[14-Mar-2026 11:27:59 Europe/Paris] PHP Warning:  Undefined array key "dest_role" in C:\xampp\htdocs\mairie\admin\messages.php on line 235
+[14-Mar-2026 11:35:01 Europe/Paris] PHP Warning:  Undefined array key "dest_role" in C:\xampp\htdocs\mairie\admin\messages.php on line 235
+[14-Mar-2026 11:35:01 Europe/Paris] PHP Warning:  Undefined array key "dest_role" in C:\xampp\htdocs\mairie\admin\messages.php on line 235
+[14-Mar-2026 11:27:42 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:28:05 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:28:14 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\demandes.php on line 226
+[14-Mar-2026 11:28:40 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:28:40 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:29:16 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:29:16 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:29:19 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\demandes.php on line 226
+[14-Mar-2026 11:29:19 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\demandes.php on line 226
+[14-Mar-2026 11:29:42 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:29:42 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:29:42 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:29:49 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\demandes.php on line 226
+[14-Mar-2026 11:29:49 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\demandes.php on line 226
+[14-Mar-2026 11:29:49 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\demandes.php on line 226
+[14-Mar-2026 11:32:41 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\demandes.php on line 226
+[14-Mar-2026 11:32:41 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\demandes.php on line 226
+[14-Mar-2026 11:32:41 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\demandes.php on line 226
+[14-Mar-2026 11:32:57 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:32:57 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:32:57 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:34:08 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:34:08 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:39:17 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:39:17 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:39:20 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:39:20 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:42:49 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:42:49 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:42:50 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:42:50 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:45:48 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:45:48 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:45:49 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:45:49 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:30:24 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:30:24 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:30:31 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\demandes.php on line 226
+[14-Mar-2026 11:30:31 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\demandes.php on line 226
+[14-Mar-2026 11:30:42 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\demandes.php on line 226
+[14-Mar-2026 11:30:42 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\demandes.php on line 226
+[14-Mar-2026 11:30:55 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:30:55 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:31:02 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:31:02 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:31:04 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199
+[14-Mar-2026 11:31:04 Europe/Paris] PHP Warning:  Undefined array key "" in C:\xampp\htdocs\mairie\admin\dashboard.php on line 199

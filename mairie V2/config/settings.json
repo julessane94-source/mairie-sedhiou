@@ -1,0 +1,15 @@
+{
+    "site_name": "Mairie Services sedhiou",
+    "email_contact": "mairiesedhiou@gmail.com",
+    "telephone": "339950205",
+    "adresse": "Place de la Mairie, 75000 Paris",
+    "horaires": "Lundi-Vendredi: 8h-17h, Samedi: 9h-12h",
+    "max_file_size": 5,
+    "allowed_file_types": "pdf,jpg,jpeg,png",
+    "smtp_host": "",
+    "smtp_port": 587,
+    "smtp_user": "",
+    "smtp_pass": "",
+    "maintenance_mode": false,
+    "registration_open": true
+}

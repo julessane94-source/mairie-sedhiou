@@ -1,0 +1,15 @@
+{
+    "site_name": "Mairie DIENDE",
+    "email_contact": "mairiediende@gmail.com",
+    "telephone": "339950912",
+    "adresse": "EN FACE ECOLE DEMBO COLY",
+    "horaires": "Lundi-Vendredi: 8h-17h, Samedi: 9h-12h",
+    "max_file_size": 5,
+    "allowed_file_types": "pdf,jpg,jpeg,png",
+    "smtp_host": "smtp.gmail.com",
+    "smtp_port": 587,
+    "smtp_user": "julessane94@gmail.com",
+    "smtp_pass": "123456",
+    "maintenance_mode": false,
+    "registration_open": true
+}

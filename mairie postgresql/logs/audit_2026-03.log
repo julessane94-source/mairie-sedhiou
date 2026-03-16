@@ -1,0 +1,19 @@
+[2026-03-15 15:34:23] [AUDIT] user=anon ip=::1 action=LOGIN_SUCCESS | Utilisateur #1 (julessane94@gmail.com) connecté — rôle: admin
+[2026-03-15 15:37:30] [AUDIT] user=1 ip=::1 action=LOGOUT | Utilisateur #1 (julessane94@gmail.com) déconnecté
+[2026-03-15 15:51:37] [AUDIT] user=anon ip=::1 action=LOGIN_SUCCESS | Utilisateur #1 (julessane94@gmail.com) connecté — rôle: admin
+[2026-03-15 15:51:49] [AUDIT] user=1 ip=::1 action=LOGOUT | Utilisateur #1 (julessane94@gmail.com) déconnecté
+[2026-03-15 15:57:24] [AUDIT] user=anon ip=::1 action=LOGIN_SUCCESS | Utilisateur #2 (zek@gmail.com) connecté — rôle: public
+[2026-03-15 16:00:17] [AUDIT] user=2 ip=::1 action=LOGOUT | Utilisateur #2 (zek@gmail.com) déconnecté
+[2026-03-15 16:00:29] [AUDIT] user=anon ip=::1 action=LOGIN_SUCCESS | Utilisateur #1 (julessane94@gmail.com) connecté — rôle: admin
+[2026-03-15 16:13:58] [AUDIT] user=1 ip=::1 action=LOGOUT | Utilisateur #1 (julessane94@gmail.com) déconnecté
+[2026-03-15 16:14:58] [AUDIT] user=anon ip=::1 action=LOGIN_SUCCESS | Utilisateur #3 (aminasy@gmail.com) connecté — rôle: agent
+[2026-03-15 16:15:30] [AUDIT] user=3 ip=::1 action=DEMANDE_PRISE_EN_CHARGE | Agent #3 — demande #1
+[2026-03-15 16:21:15] [AUDIT] user=3 ip=::1 action=DEMANDE_TRAITEE | Agent #3 — demande #1 — statut: traite
+[2026-03-15 15:22:51] [AUDIT] user=3 ip=::1 action=PASSWORD_CHANGED | Mot de passe changé pour user #3
+[2026-03-15 15:24:21] [AUDIT] user=3 ip=::1 action=LOGOUT | Utilisateur #3 (aminasy@gmail.com) déconnecté
+[2026-03-15 15:24:37] [AUDIT] user=anon ip=::1 action=LOGIN_SUCCESS | Utilisateur #3 (aminasy@gmail.com) connecté — rôle: agent
+[2026-03-15 15:25:23] [AUDIT] user=3 ip=::1 action=LOGOUT | Utilisateur #3 (aminasy@gmail.com) déconnecté
+[2026-03-15 15:25:43] [AUDIT] user=anon ip=::1 action=LOGIN_SUCCESS | Utilisateur #2 (zek@gmail.com) connecté — rôle: public
+[2026-03-15 15:26:24] [AUDIT] user=2 ip=::1 action=LOGOUT | Utilisateur #2 (zek@gmail.com) déconnecté
+[2026-03-15 15:26:34] [AUDIT] user=anon ip=::1 action=LOGIN_SUCCESS | Utilisateur #1 (julessane94@gmail.com) connecté — rôle: admin
+[2026-03-15 15:31:05] [AUDIT] user=1 ip=::1 action=LOGOUT | Utilisateur #1 (julessane94@gmail.com) déconnecté

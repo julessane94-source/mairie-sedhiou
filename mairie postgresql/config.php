@@ -1,0 +1,222 @@
+<?php
+
+// Activer l'affichage des erreurs pour le débogage
+error_reporting(E_ALL);
+ini_set("display_errors", "1");
+
+// Démarrer la session si pas déjà démarrée
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Connexion PostgreSQL via DATABASE_URL
+$db_url = 'postgresql://postgres:@localhost:5432/mairie_platform?sslmode=disable';
+$db_parts = parse_url($db_url);
+
+define('DB_HOST',    $db_parts['host'] ?? 'localhost');
+define('DB_PORT',    $db_parts['port'] ?? 5432);
+define('DB_NAME',    ltrim($db_parts['path'] ?? '/mairie_platform', '/'));
+define('DB_USER',    $db_parts['user'] ?? 'postgres');
+define('DB_PASS',    $db_parts['pass'] ?? '');
+
+// Chemins importants
+define('ROOT_PATH',   __DIR__);
+define('CONFIG_PATH', ROOT_PATH . '/config');
+define('UPLOAD_PATH', ROOT_PATH . '/uploads');
+define('LOG_PATH',    ROOT_PATH . '/logs');
+
+// URL du site
+$protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
+$host     = $_SERVER['HTTP_HOST'] ?? 'localhost';
+define('SITE_URL', $protocol . $host);
+
+// Connexion à la base de données PostgreSQL
+try {
+    $sslmode = (strpos($db_url, 'sslmode=disable') !== false) ? 'disable' : 'require';
+    $dsn = "pgsql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";sslmode=" . $sslmode;
+    $options = [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES   => false,
+    ];
+    $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
+} catch (PDOException $e) {
+    error_log("Erreur de connexion à la base de données : " . $e->getMessage());
+    die("Erreur de connexion à la base de données. Veuillez réessayer plus tard.<br><small>" . $e->getMessage() . "</small>");
+}
+
+// Initialiser les tables si nécessaire
+require_once ROOT_PATH . '/db_init.php';
+
+// Variable globale pour les paramètres
+$GLOBALS['app_settings'] = null;
+
+function loadSettings() {
+    global $app_settings;
+    if ($app_settings !== null) return $app_settings;
+
+    $default_settings = [
+        'site_name'          => 'Mairie Services',
+        'email_contact'      => 'contact@mairie.fr',
+        'telephone'          => '01 23 45 67 89',
+        'adresse'            => 'Place de la Mairie, 75000 Paris',
+        'horaires'           => 'Lundi-Vendredi: 8h-17h, Samedi: 9h-12h',
+        'max_file_size'      => 5,
+        'allowed_file_types' => 'pdf,jpg,jpeg,png',
+        'smtp_host'          => '',
+        'smtp_port'          => 587,
+        'smtp_user'          => '',
+        'smtp_pass'          => '',
+        'maintenance_mode'   => false,
+        'registration_open'  => true,
+        'facebook_url'       => '#',
+        'twitter_url'        => '#',
+        'linkedin_url'       => '#',
+        'instagram_url'      => '#',
+        'logo_url'           => '',
+        'favicon_url'        => '',
+        'google_analytics_id'=> ''
+    ];
+
+    $loaded_settings = [];
+    $config_file = CONFIG_PATH . '/settings.json';
+    if (file_exists($config_file) && is_readable($config_file)) {
+        $content      = file_get_contents($config_file);
+        $json_settings = json_decode($content, true);
+        if (is_array($json_settings)) {
+            $loaded_settings = $json_settings;
+        }
+    }
+
+    $app_settings = array_merge($default_settings, $loaded_settings);
+    return $app_settings;
+}
+
+function getSettings()                  { return loadSettings(); }
+function getSetting($key, $default = null) {
+    $settings = loadSettings();
+    if (!isset($settings[$key])) return $default;
+    $value = $settings[$key];
+    if (is_string($value)) {
+        if ($value === 'true'  || $value === '1') return true;
+        if ($value === 'false' || $value === '0') return false;
+    }
+    return $value;
+}
+function getSettingBool($key, $default = false) { return filter_var(getSetting($key, $default), FILTER_VALIDATE_BOOLEAN); }
+function getSettingInt($key, $default = 0)       { return (int)getSetting($key, $default); }
+
+function saveSettings($new_settings) {
+    global $app_settings;
+    if (!is_dir(CONFIG_PATH)) mkdir(CONFIG_PATH, 0755, true);
+    foreach ($new_settings as $key => $value) {
+        if (is_bool($value)) $new_settings[$key] = $value ? '1' : '0';
+    }
+    $config_file = CONFIG_PATH . '/settings.json';
+    $json_data   = json_encode($new_settings, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    if (file_put_contents($config_file, $json_data, LOCK_EX) === false) return false;
+    $app_settings = $new_settings;
+    return true;
+}
+
+function reloadSettings() { $GLOBALS['app_settings'] = null; return loadSettings(); }
+function isMaintenanceMode()  { return getSettingBool('maintenance_mode', false); }
+function isRegistrationOpen() { return getSettingBool('registration_open', true); }
+function isLoggedIn()         { return isset($_SESSION['user_id']) && !empty($_SESSION['user_id']); }
+function hasRole($role)       { return isset($_SESSION['user_role']) && $_SESSION['user_role'] === $role; }
+
+function generateNumeroDemande() {
+    $date   = date('Ymd');
+    $random = str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
+    return 'DEM-' . $date . '-' . $random;
+}
+
+/**
+ * Génère le N°CIT basé sur la date de naissance + numéro de registre (ID)
+ * Format: CIT-AAAAMMJJ-NNNNN
+ * @param string $date_naissance  Format YYYY-MM-DD
+ * @param int    $id_registre     ID auto-incrémenté du citoyen
+ * @return string
+ */
+function generateNumeroCitoyen(string $date_naissance, int $id_registre): string {
+    $date_formatee = str_replace('-', '', $date_naissance); // YYYYMMDD
+    $numero        = str_pad($id_registre, 5, '0', STR_PAD_LEFT);
+    return 'CIT-' . $date_formatee . '-' . $numero;
+}
+
+function redirect($url) { header('Location: ' . $url); exit(); }
+
+function setFlashMessage($message, $type = 'info') {
+    $_SESSION['flash'] = ['message' => $message, 'type' => $type];
+}
+function getFlashMessage() {
+    if (isset($_SESSION['flash'])) {
+        $flash = $_SESSION['flash'];
+        unset($_SESSION['flash']);
+        return $flash;
+    }
+    return null;
+}
+
+function e($data) { return htmlspecialchars($data, ENT_QUOTES, 'UTF-8'); }
+function sanitize($input) { return trim(htmlspecialchars(strip_tags($input), ENT_QUOTES, 'UTF-8')); }
+function validateEmail($email) { return filter_var($email, FILTER_VALIDATE_EMAIL) !== false; }
+
+function initializeDirectories() {
+    foreach ([CONFIG_PATH, UPLOAD_PATH, LOG_PATH, UPLOAD_PATH . '/documents', UPLOAD_PATH . '/temp'] as $dir) {
+        if (!is_dir($dir)) mkdir($dir, 0755, true);
+    }
+}
+
+function checkDatabaseConnection() {
+    global $pdo;
+    try { $pdo->query("SELECT 1"); return true; }
+    catch (PDOException $e) { return false; }
+}
+
+function logAction($action, $details = '') {
+    $log_file  = LOG_PATH . '/actions.log';
+    $timestamp = date('Y-m-d H:i:s');
+    $user_id   = $_SESSION['user_id'] ?? 'anonymous';
+    $ip        = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+    file_put_contents($log_file, "[$timestamp] User: $user_id - IP: $ip - Action: $action - Details: $details\n", FILE_APPEND | LOCK_EX);
+}
+
+// Initialiser les dossiers
+initializeDirectories();
+
+// Mode maintenance
+if (isMaintenanceMode() &&
+    basename($_SERVER['PHP_SELF']) !== 'maintenance.php' &&
+    basename(dirname($_SERVER['PHP_SELF'])) !== 'admin') {
+    if (!isLoggedIn() || !hasRole('admin')) redirect('maintenance.php');
+}
+
+// Logs PHP
+ini_set('log_errors', 1);
+ini_set('error_log', LOG_PATH . '/php_errors.log');
+
+date_default_timezone_set('Europe/Paris');
+
+define('DEMANDE_TYPES', [
+    'extrait_naissance'    => 'Extrait de naissance',
+    'declaration_naissance'=> 'Déclaration de naissance',
+    'mariage'              => 'Certificat de mariage',
+    'deces'                => 'Certificat de décès',
+    'residence'            => 'Certificat de résidence'
+]);
+define('DEMANDE_STATUTS', [
+    'en_attente' => 'En attente',
+    'en_cours'   => 'En cours',
+    'traite'     => 'Traité',
+    'rejete'     => 'Rejeté'
+]);
+define('STATUT_BADGES', [
+    'en_attente' => 'warning',
+    'en_cours'   => 'info',
+    'traite'     => 'success',
+    'rejete'     => 'danger'
+]);
+
+loadSettings();
+?>
