@@ -7,13 +7,17 @@ use App\Models\Demande;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
-class MessageController extends Controller
+class MessageController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('auth');
-        $this->middleware('role:citoyen');
+        return [
+            new Middleware('auth'),
+            new Middleware('role:citoyen'),
+        ];
     }
 
     public function store(Request $request, Demande $demande): RedirectResponse

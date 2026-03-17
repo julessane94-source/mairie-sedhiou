@@ -516,9 +516,7 @@
                 <a href="{{ $youtube }}" target="_blank" rel="noopener noreferrer" class="bg-white text-red-600 p-4 rounded-full hover:bg-gray-100 transition text-2xl" title="YouTube">
                     <i class="fab fa-youtube"></i>
                 </a>
-                @endifref="https://www.youtube.com/@mairi_dakar" target="_blank" rel="noopener noreferrer" class="bg-white text-red-600 p-4 rounded-full hover:bg-gray-100 transition text-2xl" title="YouTube">
-                    <i class="fab fa-youtube"></i>
-                </a>
+                @endif
             </div>
 
             <!-- CTA Buttons -->

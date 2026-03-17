@@ -11,15 +11,25 @@ use App\Services\PaymentReceiptService;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
-class PaymentController extends Controller
+class PaymentController extends Controller implements HasMiddleware
 {
     protected PaymentReceiptService $receiptService;
 
     public function __construct(PaymentReceiptService $receiptService)
     {
-        // Middlewares définis dans routes/web.php - plus besoin de les redéclarer
         $this->receiptService = $receiptService;
+    }
+
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('auth'),
+            new Middleware('role:citoyen'),
+        ];
     }
 
     /**

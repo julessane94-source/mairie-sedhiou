@@ -6,13 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
-class ProfilController extends Controller
+class ProfilController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('auth');
-        $this->middleware('role:citoyen');
+        return [
+            new Middleware('auth'),
+            new Middleware('role:citoyen'),
+        ];
     }
 
     public function edit(): View

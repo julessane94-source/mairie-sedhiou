@@ -6,13 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
-class UtilisateurController extends Controller
+class UtilisateurController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('auth');
-        $this->middleware('role:admin');
+        return [
+            new Middleware('auth'),
+            new Middleware('role:admin'),
+        ];
     }
 
     public function index(): View

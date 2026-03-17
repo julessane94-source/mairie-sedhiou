@@ -250,6 +250,33 @@ enum DemandeType: string
     }
 
     /**
+     * Retourne les valeurs pour les options select groupées par catégorie (ressort de la mairie seulement)
+     */
+    public static function optionsGroupedMunicipal(): array
+    {
+        $options = [];
+        $categories = [
+            'État Civil' => [],
+            'Urbanisme' => [],
+            'Commerce' => [],
+            'Social' => [],
+            'Autre' => [],
+        ];
+
+        foreach (self::municipalTypes() as $case) {
+            $categories[$case->categorie()][] = [
+                'value' => $case->value,
+                'label' => $case->label(),
+                'delai' => $case->delaiTraitement(),
+                'frais' => $case->frais(),
+            ];
+        }
+
+        // Supprimer les catégories vides
+        return array_filter($categories);
+    }
+
+    /**
      * Retourne les valeurs pour les options select simples
      */
     public static function options(): array
@@ -257,6 +284,36 @@ enum DemandeType: string
         return array_map(
             fn($case) => ['value' => $case->value, 'label' => $case->label()],
             self::cases()
+        );
+    }
+
+    /**
+     * Vérifie si ce type de demande est du ressort de la mairie
+     */
+    public function isAuRessortDeLaMairie(): bool
+    {
+        // Les demandes qui NE SONT PAS du ressort de la mairie
+        $notMunicipal = [
+            self::CARTE_IDENTITE,
+            self::PASSEPORT,
+            self::RENOUVELEMENT_CARTE_ID,
+            self::DUPLICATA_CARTE_ID,
+            self::REGISTRE_COMMERCE,
+            self::ALLOCATION_FAMILIALE,
+            self::BOURSE_ETUDIANTE,
+        ];
+
+        return !in_array($this, $notMunicipal);
+    }
+
+    /**
+     * Retourne les demandes du ressort de la mairie
+     */
+    public static function municipalTypes(): array
+    {
+        return array_filter(
+            self::cases(),
+            fn($case) => $case->isAuRessortDeLaMairie()
         );
     }
 }

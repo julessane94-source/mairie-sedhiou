@@ -4,21 +4,29 @@ namespace App\Http\Controllers\Citoyen;
 
 use App\Http\Controllers\Controller;
 use App\Models\Demande;
+use App\Enums\DemandeType;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
-class DemandeController extends Controller
+class DemandeController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('auth');
-        $this->middleware('role:citoyen');
+        return [
+            new Middleware('auth'),
+            new Middleware('role:citoyen'),
+        ];
     }
 
     public function index(): View
     {
+        // Filtrer les demandes du ressort de la mairie seulement
+        $municipalTypes = collect(DemandeType::municipalTypes())->pluck('value');
         $demandes = auth()->user()->demandes()
+            ->whereIn('type', $municipalTypes)
             ->latest()
             ->paginate(10);
 
@@ -27,16 +35,20 @@ class DemandeController extends Controller
 
     public function create(): View
     {
-        $typesDemandes = \App\Enums\DemandeType::optionsGrouped();
+        // Proposer uniquement les types de demandes du ressort de la mairie
+        $typesDemandes = DemandeType::optionsGroupedMunicipal();
         return view('citoyen.demandes.create', compact('typesDemandes'));
     }
 
     public function store(Request $request): RedirectResponse
     {
+        // Obtenir les types municipaux valides
+        $municipalTypes = collect(DemandeType::municipalTypes())->pluck('value')->toArray();
+        
         $validated = $request->validate([
             'titre' => 'required|string|max:255',
             'description' => 'required|string',
-            'type' => 'required|string|in:' . implode(',', array_column(\App\Enums\DemandeType::options(), 'value')),
+            'type' => 'required|string|in:' . implode(',', $municipalTypes),
             'priorite' => 'nullable|in:basse,normale,haute,urgente',
         ]);
 

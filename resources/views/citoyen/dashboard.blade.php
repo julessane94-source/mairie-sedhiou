@@ -38,6 +38,43 @@
     </a>
 </div>
 
+<!-- Mes Messages -->
+@if($messagesRecus->count() > 0)
+<div class="bg-white rounded-lg shadow mb-8">
+    <div class="p-6 border-b border-gray-200 bg-blue-50">
+        <h2 class="text-xl font-bold text-gray-900">📬 Mes Messages ({{ $messagesRecus->count() }} dernier(s))</h2>
+    </div>
+    
+    <div class="divide-y divide-gray-200">
+        @foreach($messagesRecus as $message)
+            <div class="p-6 hover:bg-gray-50 transition">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-semibold text-gray-900">
+                        <span class="text-blue-600">Demande:</span> 
+                        <a href="{{ route('citoyen.demandes.show', $message->demande) }}" class="hover:underline">
+                            {{ $message->demande->titre }}
+                        </a>
+                    </h3>
+                </div>
+                <p class="text-gray-700 text-sm mb-2">{{ Str::limit($message->contenu, 150) }}</p>
+                <div class="flex justify-between items-center text-sm text-gray-500">
+                    <span>De: <strong>{{ $message->expediteur->name }}</strong></span>
+                    <span>{{ $message->created_at->format('d/m/Y H:i') }}</span>
+                </div>
+            </div>
+        @endforeach
+    </div>
+    
+    @if($messagesRecus->count() > 0)
+    <div class="p-4 bg-gray-50 border-t border-gray-200 text-center">
+        <a href="{{ route('citoyen.demandes.index') }}" class="text-blue-600 hover:underline text-sm">
+            Voir tous les messages dans mes demandes →
+        </a>
+    </div>
+    @endif
+</div>
+@endif
+
 <!-- Mes demandes -->
 <div class="bg-white rounded-lg shadow">
     <div class="p-6 border-b border-gray-200">
