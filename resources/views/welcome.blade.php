@@ -99,11 +99,11 @@
                 <!-- Service 1 -->
                 <div class="service-card bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-lg border border-blue-200">
                     <div class="text-4xl mb-4 text-blue-600">
-                        <i class="fas fa-file-alt"></i>
+                        <i class="fas fa-birthday-cake"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Demandes Administratives</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">État Civil</h3>
                     <p class="text-gray-700 mb-4">
-                        Soumettez vos demandes de certificats, autorisations et autres documents administratifs en quelques clics.
+                        Déclarations de naissance, mariages, décès, certificats de vie, cartes d'identité, passeports...
                     </p>
                     <a href="{{ route('register') }}" class="text-blue-600 font-semibold hover:text-blue-800">En savoir plus →</a>
                 </div>
@@ -111,11 +111,11 @@
                 <!-- Service 2 -->
                 <div class="service-card bg-gradient-to-br from-green-50 to-green-100 p-8 rounded-lg border border-green-200">
                     <div class="text-4xl mb-4 text-green-600">
-                        <i class="fas fa-credit-card"></i>
+                        <i class="fas fa-building"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Paiements en Ligne</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Urbanisme & Construction</h3>
                     <p class="text-gray-700 mb-4">
-                        Effectuez vos paiements de manière sécurisée via plusieurs méthodes de paiement.
+                        Permis de construire, autorisations de travaux, certificats de conformité, plans cadastraux...
                     </p>
                     <a href="{{ route('register') }}" class="text-green-600 font-semibold hover:text-green-800">En savoir plus →</a>
                 </div>
@@ -123,11 +123,11 @@
                 <!-- Service 3 -->
                 <div class="service-card bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-lg border border-purple-200">
                     <div class="text-4xl mb-4 text-purple-600">
-                        <i class="fas fa-comments"></i>
+                        <i class="fas fa-store"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Messagerie Intégrée</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Commerce & Entreprises</h3>
                     <p class="text-gray-700 mb-4">
-                        Communiquez directement avec les agents municipaux pour vos questions et suivi de dossier.
+                        Licences commerciales, patentes, registres du commerce, autorisations d'exploitation...
                     </p>
                     <a href="{{ route('register') }}" class="text-purple-600 font-semibold hover:text-purple-800">En savoir plus →</a>
                 </div>
@@ -135,11 +135,11 @@
                 <!-- Service 4 -->
                 <div class="service-card bg-gradient-to-br from-yellow-50 to-yellow-100 p-8 rounded-lg border border-yellow-200">
                     <div class="text-4xl mb-4 text-yellow-600">
-                        <i class="fas fa-search"></i>
+                        <i class="fas fa-hands-helping"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Suivi de Demande</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Aides Sociales</h3>
                     <p class="text-gray-700 mb-4">
-                        Suivez l'état de vos demandes en temps réel et recevez des notifications de mise à jour.
+                        Allocations familiales, cartes de handicapés, aides sociales, bourses étudiantes...
                     </p>
                     <a href="{{ route('register') }}" class="text-yellow-600 font-semibold hover:text-yellow-800">En savoir plus →</a>
                 </div>
@@ -147,11 +147,11 @@
                 <!-- Service 5 -->
                 <div class="service-card bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-lg border border-red-200">
                     <div class="text-4xl mb-4 text-red-600">
-                        <i class="fas fa-shield-alt"></i>
+                        <i class="fas fa-file-invoice-dollar"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Sécurité Garantie</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Paiements & Taxes</h3>
                     <p class="text-gray-700 mb-4">
-                        Vos données sont protégées par les dernières normes de sécurité et de confidentialité.
+                        Paiement de taxes, amendes, redevances municipales, factures administratives...
                     </p>
                     <a href="{{ route('register') }}" class="text-red-600 font-semibold hover:text-red-800">En savoir plus →</a>
                 </div>
@@ -159,11 +159,11 @@
                 <!-- Service 6 -->
                 <div class="service-card bg-gradient-to-br from-indigo-50 to-indigo-100 p-8 rounded-lg border border-indigo-200">
                     <div class="text-4xl mb-4 text-indigo-600">
-                        <i class="fas fa-mobile-alt"></i>
+                        <i class="fas fa-comments"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Accessible 24/7</h3>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Plaintes & Suggestions</h3>
                     <p class="text-gray-700 mb-4">
-                        Accédez à vos services depuis n'importe quel appareil, à tout moment, où que vous soyez.
+                        Signaler des problèmes, faire des suggestions, demander des informations...
                     </p>
                     <a href="{{ route('register') }}" class="text-indigo-600 font-semibold hover:text-indigo-800">En savoir plus →</a>
                 </div>
@@ -233,6 +233,146 @@
                         <span class="text-gray-700"><strong>Gratuit :</strong> Service sans frais supplémentaires</span>
                     </li>
                 </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Request Types Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Types de Demandes Populaires</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Découvrez les services administratifs les plus demandés par les citoyens sénégalais
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Popular Type 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-id-card text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Carte d'Identité</h3>
+                            <span class="text-sm text-gray-500">État Civil</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Demande de carte d'identité nationale ou renouvellement. Délai estimé: 15 jours.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium text-green-600">Frais: 10 000 FCFA</span>
+                        <a href="{{ route('register') }}" class="text-blue-600 text-sm font-medium hover:text-blue-800">Faire une demande →</a>
+                    </div>
+                </div>
+
+                <!-- Popular Type 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-building text-green-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Permis de Construire</h3>
+                            <span class="text-sm text-gray-500">Urbanisme</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Autorisation de construire ou rénover un bâtiment. Délai estimé: 30 jours.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium text-green-600">Frais: 50 000 FCFA</span>
+                        <a href="{{ route('register') }}" class="text-green-600 text-sm font-medium hover:text-green-800">Faire une demande →</a>
+                    </div>
+                </div>
+
+                <!-- Popular Type 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-store text-purple-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Licence Commerciale</h3>
+                            <span class="text-sm text-gray-500">Commerce</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Autorisation d'exercer une activité commerciale. Délai estimé: 7 jours.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium text-green-600">Frais: 25 000 FCFA</span>
+                        <a href="{{ route('register') }}" class="text-purple-600 text-sm font-medium hover:text-purple-800">Faire une demande →</a>
+                    </div>
+                </div>
+
+                <!-- Popular Type 4 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-yellow-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-passport text-yellow-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Passeport</h3>
+                            <span class="text-sm text-gray-500">État Civil</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Demande de passeport biométrique ou renouvellement. Délai estimé: 21 jours.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium text-green-600">Frais: 75 000 FCFA</span>
+                        <a href="{{ route('register') }}" class="text-yellow-600 text-sm font-medium hover:text-yellow-800">Faire une demande →</a>
+                    </div>
+                </div>
+
+                <!-- Popular Type 5 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-red-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-users text-red-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Allocations Familiales</h3>
+                            <span class="text-sm text-gray-500">Aides Sociales</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Demande d'allocations familiales et aides sociales. Délai estimé: 14 jours.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium text-green-600">Gratuit</span>
+                        <a href="{{ route('register') }}" class="text-red-600 text-sm font-medium hover:text-red-800">Faire une demande →</a>
+                    </div>
+                </div>
+
+                <!-- Popular Type 6 -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 p-3 rounded-full mr-4">
+                            <i class="fas fa-graduation-cap text-indigo-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Bourse Étudiante</h3>
+                            <span class="text-sm text-gray-500">Aides Sociales</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Demande de bourse d'études ou aide financière. Délai estimé: 30 jours.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium text-green-600">Gratuit</span>
+                        <a href="{{ route('register') }}" class="text-indigo-600 text-sm font-medium hover:text-indigo-800">Faire une demande →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="{{ route('register') }}" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                    Voir Tous les Services
+                </a>
             </div>
         </div>
     </section>

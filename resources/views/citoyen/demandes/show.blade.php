@@ -14,15 +14,47 @@
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     <!-- Contenu principal -->
     <div class="lg:col-span-2">
-        <!-- Détails -->
+        <!-- Détails du type de demande -->
+        @php
+            $typeEnum = $demande->getTypeEnum();
+        @endphp
+        @if($typeEnum)
         <div class="bg-white rounded-lg shadow p-6 mb-6">
-            <h2 class="text-xl font-bold text-gray-900 mb-6">Informations</h2>
+            <h2 class="text-xl font-bold text-gray-900 mb-6">Détails de la demande</h2>
             
-            <div class="grid grid-cols-2 gap-6">
-                <div>
-                    <p class="text-gray-600 text-sm font-semibold">Type</p>
-                    <p class="text-gray-900 font-medium">{{ $demande->type }}</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-blue-50 p-4 rounded-lg">
+                    <h3 class="font-semibold text-blue-900 mb-2">📋 Type</h3>
+                    <p class="text-blue-800">{{ $typeEnum->label() }}</p>
+                    <p class="text-sm text-blue-600 mt-1">{{ $typeEnum->categorie() }}</p>
                 </div>
+                
+                <div class="bg-green-50 p-4 rounded-lg">
+                    <h3 class="font-semibold text-green-900 mb-2">⏱️ Délai estimé</h3>
+                    <p class="text-green-800">{{ $demande->delai_traitement_estime ?? $typeEnum->delaiTraitement() }} jours</p>
+                    @if($demande->date_limite)
+                        <p class="text-sm text-green-600 mt-1">Échéance: {{ $demande->date_limite->format('d/m/Y') }}</p>
+                    @endif
+                </div>
+                
+                <div class="bg-purple-50 p-4 rounded-lg">
+                    <h3 class="font-semibold text-purple-900 mb-2">💰 Frais estimés</h3>
+                    <p class="text-purple-800">{{ number_format($demande->frais_estimes ?? $typeEnum->frais(), 0, ',', ' ') }} FCFA</p>
+                </div>
+            </div>
+
+            @if($demande->documents_requis && count($demande->documents_requis) > 0)
+            <div class="mt-6">
+                <h3 class="font-semibold text-gray-900 mb-3">📄 Documents requis</h3>
+                <ul class="list-disc list-inside space-y-1 text-gray-700">
+                    @foreach($demande->documents_requis as $document)
+                        <li>{{ $document }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
+        </div>
+        @endif
                 
                 <div>
                     <p class="text-gray-600 text-sm font-semibold">Priorité</p>

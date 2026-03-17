@@ -27,7 +27,8 @@ class DemandeController extends Controller
 
     public function create(): View
     {
-        return view('citoyen.demandes.create');
+        $typesDemandes = \App\Enums\DemandeType::optionsGrouped();
+        return view('citoyen.demandes.create', compact('typesDemandes'));
     }
 
     public function store(Request $request): RedirectResponse
@@ -35,7 +36,7 @@ class DemandeController extends Controller
         $validated = $request->validate([
             'titre' => 'required|string|max:255',
             'description' => 'required|string',
-            'type' => 'required|string|max:100',
+            'type' => 'required|string|in:' . implode(',', array_column(\App\Enums\DemandeType::options(), 'value')),
             'priorite' => 'nullable|in:basse,normale,haute,urgente',
         ]);
 
@@ -46,6 +47,10 @@ class DemandeController extends Controller
             'priorite' => $validated['priorite'] ?? 'normale',
             'statut' => 'pendante',
         ]);
+
+        // Initialiser les informations du type de demande
+        $demande->initialiserTypeDemande();
+        $demande->calculerDateLimite();
 
         return redirect()->route('citoyen.demandes.show', $demande)
             ->with('success', 'Demande créée avec succès');

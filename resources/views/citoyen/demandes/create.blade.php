@@ -25,19 +25,39 @@
 
             <div class="mb-6">
                 <label class="block text-gray-700 font-semibold mb-2">Type de demande</label>
-                <select name="type" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent
+                <select name="type" id="type_demande" required 
+                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent
                     @error('type') border-red-500 @enderror">
                     <option value="">-- Sélectionnez une option --</option>
-                    <option value="Certificat">Certificat</option>
-                    <option value="Autorisation">Autorisation</option>
-                    <option value="Document">Document</option>
-                    <option value="Information">Demande d'information</option>
-                    <option value="Plainte">Plainte</option>
-                    <option value="Autre">Autre</option>
+                    @foreach($typesDemandes as $categorie => $types)
+                        <optgroup label="{{ $categorie }}">
+                            @foreach($types as $type)
+                                <option value="{{ $type['value'] }}" 
+                                        data-delai="{{ $type['delai'] }}" 
+                                        data-frais="{{ $type['frais'] }}">
+                                    {{ $type['label'] }}
+                                </option>
+                            @endforeach
+                        </optgroup>
+                    @endforeach
                 </select>
                 @error('type')
                     <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                 @enderror
+                
+                <!-- Informations du type sélectionné -->
+                <div id="type-info" class="mt-3 p-3 bg-blue-50 rounded-lg hidden">
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <span class="font-semibold text-blue-900">Délai estimé:</span>
+                            <span id="delai-info" class="text-blue-700"></span>
+                        </div>
+                        <div>
+                            <span class="font-semibold text-blue-900">Frais:</span>
+                            <span id="frais-info" class="text-blue-700"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="mb-6">
@@ -71,4 +91,21 @@
         </form>
     </div>
 </div>
+
+<script>
+document.getElementById('type_demande').addEventListener('change', function() {
+    const selectedOption = this.options[this.selectedIndex];
+    const delai = selectedOption.getAttribute('data-delai');
+    const frais = selectedOption.getAttribute('data-frais');
+    const typeInfo = document.getElementById('type-info');
+    
+    if (delai && frais) {
+        document.getElementById('delai-info').textContent = delai + ' jours';
+        document.getElementById('frais-info').textContent = frais + ' FCFA';
+        typeInfo.classList.remove('hidden');
+    } else {
+        typeInfo.classList.add('hidden');
+    }
+});
+</script>
 @endsection
