@@ -17,12 +17,13 @@ class AttendanceFactory extends Factory
     {
         return [
             'agent_id' => User::factory()->create(['role' => 'agent'])->id,
-            'date' => $this->faker->dateTimeBetween('-30 days', 'now'),
-            'statut' => $this->faker->randomElement(['present', 'absent']),
-            'check_in' => $this->faker->optional(0.7)->time(),
-            'check_out' => $this->faker->optional(0.5)->time(),
-            'justifiee' => false,
-            'motif' => null,
+            'date_presence' => $this->faker->dateTimeBetween('-30 days', 'now')->format('Y-m-d'),
+            'heure_debut' => $this->faker->optional(0.7)->time(),
+            'heure_fin' => $this->faker->optional(0.5)->time(),
+            'statut' => $this->faker->randomElement(['present', 'absent', 'retard', 'repos', 'congé']),
+            'heures_travaillees' => $this->faker->optional(0.6)->randomFloat(2, 1, 12),
+            'notes' => $this->faker->optional(0.3)->sentence(),
+            'justificatif' => null,
         ];
     }
 
@@ -30,8 +31,9 @@ class AttendanceFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'statut' => 'present',
-            'check_in' => '08:00:00',
-            'check_out' => '17:00:00',
+            'heure_debut' => '08:00:00',
+            'heure_fin' => '17:00:00',
+            'heures_travaillees' => 9.00,
         ]);
     }
 
@@ -39,8 +41,8 @@ class AttendanceFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'statut' => 'absent',
-            'check_in' => null,
-            'check_out' => null,
+            'heure_debut' => null,
+            'heure_fin' => null,
         ]);
     }
 

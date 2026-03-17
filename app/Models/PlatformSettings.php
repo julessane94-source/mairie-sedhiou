@@ -48,7 +48,7 @@ class PlatformSettings extends Model
     /**
      * Tous les paramètres pour l'admin
      */
-    public static function all(): array
+    public static function getAllSettings(): array
     {
         return self::query()->get()->mapWithKeys(function ($setting) {
             return [$setting->cle => self::get($setting->cle)];

@@ -23,7 +23,7 @@ class PaymentFactory extends Factory
             'citoyen_id' => $demande->citoyen_id,
             'montant' => $this->faker->randomFloat(2, 10000, 500000),
             'devise' => 'XOF',
-            'methode_paiement' => $this->faker->randomElement(['carte', 'virement', 'cash', 'cheque']),
+            'methode_paiement' => $this->faker->randomElement(['carte', 'virement', 'especes', 'cheque', 'mobile_money']),
             'statut' => 'pending',
             'numero_transaction' => $this->faker->uuid(),
             'date_paiement' => null,

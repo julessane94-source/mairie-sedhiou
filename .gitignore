@@ -22,7 +22,3 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
-git rm -r --cached vendor
-git add .gitignore
-git commit -m "Nettoyage : suppression de vendor du suivi Git"
-git push origin main

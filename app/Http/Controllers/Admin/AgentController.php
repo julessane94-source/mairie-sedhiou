@@ -49,6 +49,7 @@ class AgentController extends Controller
 
         $agent = User::create([
             ...$validated,
+            'name' => "{$validated['prenom']} {$validated['nom']}",
             'role' => 'agent',
             'statut' => 'actif',
             'password' => bcrypt($validated['password']),

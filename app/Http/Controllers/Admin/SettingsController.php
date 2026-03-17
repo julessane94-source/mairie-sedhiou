@@ -15,7 +15,7 @@ class SettingsController extends Controller
      */
     public function index(): View
     {
-        $settings = PlatformSettings::all();
+        $settings = PlatformSettings::getAllSettings();
         
         // Organiser par catégorie
         $categories = $this->organizeSettings($settings);

@@ -159,11 +159,14 @@ class DashboardService
     {
         $diagnostics = [];
 
-        // Agents chargés - optimisé avec withCount
+        // Agents chargés - optimisé avec whereHas et having
         $agentsCharges = User::where('role', 'agent')
-            ->withCount('demandes')
-            ->where('statut', 'actif')  // Vérifier agent actif
-            ->having('demandes_count', '>', 10)
+            ->where('statut', 'actif')
+            ->whereHas('demandes', function($q) {
+                $q->selectRaw('citoyen_id')
+                    ->groupBy('citoyen_id')
+                    ->havingRaw('count(*) > 10');
+            })
             ->get();
 
         if ($agentsCharges->count() > 0) {
