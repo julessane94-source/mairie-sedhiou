@@ -54,6 +54,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
         Route::get('/notifications', Admin\SettingsController::class . '@notifications')->name('notifications');
         Route::post('/notifications', Admin\SettingsController::class . '@updateNotifications')->name('notifications.update');
         
+        Route::get('/page-accueil', Admin\SettingsController::class . '@homepage')->name('homepage');
+        Route::post('/page-accueil', Admin\SettingsController::class . '@updateHomepage')->name('homepage.update');
+        
         Route::get('/logs', Admin\SettingsController::class . '@logs')->name('logs');
         Route::post('/logs/effacer', Admin\SettingsController::class . '@clearLogs')->name('logs.clear');
         

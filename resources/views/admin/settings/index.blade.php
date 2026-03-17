@@ -10,20 +10,23 @@
 
 <!-- Menu de navigation -->
 <div class="bg-white rounded-lg shadow mb-6 overflow-hidden">
-    <div class="flex border-b border-gray-200">
-        <a href="{{ route('admin.settings.application') }}" class="flex-1 px-4 py-3 text-center font-semibold text-blue-600 border-b-2 border-blue-600">
+    <div class="flex flex-wrap border-b border-gray-200">
+        <a href="{{ route('admin.settings.application') }}" class="flex-1 px-4 py-3 text-center font-semibold text-blue-600 border-b-2 border-blue-600 min-w-fit">
             🏢 Application
         </a>
-        <a href="{{ route('admin.settings.operations') }}" class="flex-1 px-4 py-3 text-center font-semibold text-gray-600 hover:text-gray-900">
+        <a href="{{ route('admin.settings.homepage') }}" class="flex-1 px-4 py-3 text-center font-semibold text-gray-600 hover:text-gray-900 min-w-fit">
+            🏠 Accueil
+        </a>
+        <a href="{{ route('admin.settings.operations') }}" class="flex-1 px-4 py-3 text-center font-semibold text-gray-600 hover:text-gray-900 min-w-fit">
             📊 Opérations
         </a>
-        <a href="{{ route('admin.settings.security') }}" class="flex-1 px-4 py-3 text-center font-semibold text-gray-600 hover:text-gray-900">
+        <a href="{{ route('admin.settings.security') }}" class="flex-1 px-4 py-3 text-center font-semibold text-gray-600 hover:text-gray-900 min-w-fit">
             🔒 Sécurité
         </a>
-        <a href="{{ route('admin.settings.notifications') }}" class="flex-1 px-4 py-3 text-center font-semibold text-gray-600 hover:text-gray-900">
+        <a href="{{ route('admin.settings.notifications') }}" class="flex-1 px-4 py-3 text-center font-semibold text-gray-600 hover:text-gray-900 min-w-fit">
             🔔 Notifications
         </a>
-        <a href="{{ route('admin.settings.logs') }}" class="flex-1 px-4 py-3 text-center font-semibold text-gray-600 hover:text-gray-900">
+        <a href="{{ route('admin.settings.logs') }}" class="flex-1 px-4 py-3 text-center font-semibold text-gray-600 hover:text-gray-900 min-w-fit">
             📋 Logs
         </a>
     </div>

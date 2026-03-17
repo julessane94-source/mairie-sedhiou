@@ -222,6 +222,46 @@ class SettingsController extends Controller
     }
 
     /**
+     * Afficher les paramètres de la page d'accueil
+     */
+    public function homepage(): View
+    {
+        return view('admin.settings.homepage');
+    }
+
+    /**
+     * Mettre à jour les paramètres de la page d'accueil
+     */
+    public function updateHomepage(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'hours_weekday' => 'nullable|string|max:50',
+            'hours_saturday' => 'nullable|string|max:50',
+            'hours_sunday' => 'nullable|string|max:50',
+            'social_facebook' => 'nullable|url',
+            'social_twitter' => 'nullable|url',
+            'social_instagram' => 'nullable|url',
+            'social_linkedin' => 'nullable|url',
+            'social_youtube' => 'nullable|url',
+            'social_whatsapp' => 'nullable|url',
+            'stat_citizens' => 'nullable|string|max:50',
+            'stat_requests' => 'nullable|string|max:50',
+            'stat_availability' => 'nullable|string|max:50',
+            'hero_subtitle' => 'nullable|string|max:255',
+            'hero_description' => 'nullable|string|max:500',
+            'about_slogan' => 'nullable|string|max:255',
+        ]);
+
+        foreach ($validated as $key => $value) {
+            if ($value !== null) {
+                PlatformSettings::set($key, $value);
+            }
+        }
+
+        return back()->with('success', 'Paramètres de la page d\'accueil mis à jour avec succès.');
+    }
+
+    /**
      * Organiser les paramètres par catégorie
      */
     private function organizeSettings($settings): array
