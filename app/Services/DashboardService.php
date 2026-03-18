@@ -149,6 +149,10 @@ class DashboardService
                 ->latest()
                 ->limit(5)
                 ->get(),
+            'derniersMessages' => Message::with(['expediteur', 'demande'])
+                ->latest()
+                ->limit(6)
+                ->get(),
         ];
     }
 

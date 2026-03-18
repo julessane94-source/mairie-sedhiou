@@ -8,10 +8,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
-
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class AgentController extends Controller
 {
-    /**
+use AuthorizesRequests;    
+/**
      * Afficher la liste des agents
      */
     public function index(): View

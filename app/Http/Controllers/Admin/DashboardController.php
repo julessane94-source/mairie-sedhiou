@@ -34,6 +34,7 @@ class DashboardController extends Controller
             'dernieresDemandes' => $recentData['dernieresDemandes'],
             'derniersPaiements' => $recentData['derniersPaiements'],
             'derniersCitoyens' => $recentData['derniersCitoyens'],
+            'derniersMessages' => $recentData['derniersMessages'],
             'diagnostics' => $diagnostics,
             'agentsPresents' => $attendance['presents'],
             'agentsAbsents' => $attendance['absents'],

@@ -22,7 +22,7 @@ class MessageController extends Controller implements HasMiddleware
 
     public function store(Request $request, Demande $demande): RedirectResponse
     {
-        $this->authorize('view', $demande);
+        \Illuminate\Support\Facades\Gate::authorize('view', $demande);
 
         $validated = $request->validate([
             'contenu' => 'required|string',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\DemandeType;
 use App\Models\PlatformSettings;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -86,7 +87,20 @@ class SettingsController extends Controller
      */
     public function operations(): View
     {
-        return view('admin.settings.operations');
+        $municipalServices = collect(DemandeType::municipalTypes())
+            ->map(fn (DemandeType $type) => [
+                'value' => $type->value,
+                'label' => $type->label(),
+                'categorie' => $type->categorie(),
+            ])
+            ->groupBy('categorie');
+
+        $servicesActifs = PlatformSettings::get('services_actifs');
+        if (!is_array($servicesActifs)) {
+            $servicesActifs = collect(DemandeType::municipalTypes())->pluck('value')->toArray();
+        }
+
+        return view('admin.settings.operations', compact('municipalServices', 'servicesActifs'));
     }
 
     /**
@@ -101,10 +115,15 @@ class SettingsController extends Controller
             'devise_par_defaut' => 'required|string|in:XOF,EUR,USD',
             'heures_travail_par_jour' => 'required|numeric|min:1|max:24',
             'jour_repos_hebdo' => 'required|in:lundi,mardi,mercredi,jeudi,vendredi,samedi,dimanche',
+            'services_actifs' => 'nullable|array',
+            'services_actifs.*' => 'string|in:' . collect(DemandeType::municipalTypes())->pluck('value')->implode(','),
         ]);
 
+        $validated['services_actifs'] = $validated['services_actifs'] ?? [];
+
         foreach ($validated as $cle => $valeur) {
-            PlatformSettings::set($cle, $valeur);
+            $type = is_array($valeur) ? 'json' : 'string';
+            PlatformSettings::set($cle, $valeur, $type);
         }
 
         return back()->with('success', 'Paramètres opérationnels mis à jour.');

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Citoyen;
 
 use App\Http\Controllers\Controller;
 use App\Enums\DemandeType;
-use Illuminate\Contracts\Auth\Guard;
+use App\Models\Message;
 use Illuminate\View\View;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Routing\Controllers\HasMiddleware;
@@ -25,7 +25,7 @@ class DashboardController extends Controller implements HasMiddleware
         $user->load('demandes', 'profil');
         
         // Filtrer les demandes du ressort de la mairie seulement
-        $municipalTypes = collect(DemandeType::municipalTypes())->pluck('value');
+        $municipalTypes = collect(DemandeType::enabledMunicipalTypes())->pluck('value');
         $demandes = $user->demandes()
             ->whereIn('type', $municipalTypes)
             ->latest()
@@ -46,13 +46,19 @@ class DashboardController extends Controller implements HasMiddleware
             ->where('statut', 'rejetee')
             ->count();
 
-        // Récupérer les messages reçus (envoyés par d'autres utilisateurs)
-        // sur les demandes du citoyen
-        $messagesRecus = \App\Models\Message::whereIn(
-            'demande_id',
-            $user->demandes()->whereIn('type', $municipalTypes)->pluck('id')
-        )
+        $demandesIds = $user->demandes()->whereIn('type', $municipalTypes)->pluck('id');
+
+        // Messages reçus: écrits par d'autres utilisateurs sur les demandes du citoyen
+        $messagesRecus = Message::whereIn('demande_id', $demandesIds)
             ->where('expediteur_id', '!=', $user->id)
+            ->with(['demande', 'expediteur'])
+            ->latest()
+            ->take(5)
+            ->get();
+
+        // Messages envoyés: écrits par le citoyen sur ses demandes
+        $messagesEnvoyes = Message::whereIn('demande_id', $demandesIds)
+            ->where('expediteur_id', $user->id)
             ->with(['demande', 'expediteur'])
             ->latest()
             ->take(5)
@@ -64,6 +70,7 @@ class DashboardController extends Controller implements HasMiddleware
             'demandesAcceptees' => $demandesAcceptees,
             'demandesRejetees' => $demandesRejetees,
             'messagesRecus' => $messagesRecus,
+            'messagesEnvoyes' => $messagesEnvoyes,
         ]);
     }
 }

@@ -10,11 +10,27 @@ use Illuminate\Http\RedirectResponse;
 
 class MessageController extends Controller
 {
-    public function __construct()
+    public function index()
     {
-        $this->middleware('auth');
-        $this->middleware('role:agent');
+        $user = auth()->user();
+        $assignedIds = $user->demandesAssignees()->pluck('id');
+
+        $messagesRecus = Message::whereIn('demande_id', $assignedIds)
+            ->where('expediteur_id', '!=', $user->id)
+            ->with(['demande', 'expediteur'])
+            ->latest()
+            ->paginate(15, ['*'], 'recus_page');
+
+        $messagesEnvoyes = Message::whereIn('demande_id', $assignedIds)
+            ->where('expediteur_id', $user->id)
+            ->with(['demande', 'expediteur'])
+            ->latest()
+            ->paginate(15, ['*'], 'envoyes_page');
+
+        return view('agent.messages.index', compact('messagesRecus', 'messagesEnvoyes'));
     }
+
+    // Enregistre un nouveau message (lié à une demande)
 
     public function store(Request $request, Demande $demande): RedirectResponse
     {

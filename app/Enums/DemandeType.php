@@ -2,6 +2,8 @@
 
 namespace App\Enums;
 
+use App\Models\PlatformSettings;
+
 enum DemandeType: string
 {
     // === ÉTAT CIVIL ===
@@ -254,7 +256,6 @@ enum DemandeType: string
      */
     public static function optionsGroupedMunicipal(): array
     {
-        $options = [];
         $categories = [
             'État Civil' => [],
             'Urbanisme' => [],
@@ -263,7 +264,7 @@ enum DemandeType: string
             'Autre' => [],
         ];
 
-        foreach (self::municipalTypes() as $case) {
+        foreach (self::enabledMunicipalTypes() as $case) {
             $categories[$case->categorie()][] = [
                 'value' => $case->value,
                 'label' => $case->label(),
@@ -314,6 +315,24 @@ enum DemandeType: string
         return array_filter(
             self::cases(),
             fn($case) => $case->isAuRessortDeLaMairie()
+        );
+    }
+
+    /**
+     * Retourne les demandes municipales activées par l'admin
+     */
+    public static function enabledMunicipalTypes(): array
+    {
+        $allMunicipalTypes = self::municipalTypes();
+        $activeServices = PlatformSettings::get('services_actifs');
+
+        if (!is_array($activeServices)) {
+            return $allMunicipalTypes;
+        }
+
+        return array_filter(
+            $allMunicipalTypes,
+            fn($case) => in_array($case->value, $activeServices, true)
         );
     }
 }

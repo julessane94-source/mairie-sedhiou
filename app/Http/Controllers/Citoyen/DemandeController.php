@@ -24,7 +24,7 @@ class DemandeController extends Controller implements HasMiddleware
     public function index(): View
     {
         // Filtrer les demandes du ressort de la mairie seulement
-        $municipalTypes = collect(DemandeType::municipalTypes())->pluck('value');
+        $municipalTypes = collect(DemandeType::enabledMunicipalTypes())->pluck('value');
         $demandes = auth()->user()->demandes()
             ->whereIn('type', $municipalTypes)
             ->latest()
@@ -43,7 +43,7 @@ class DemandeController extends Controller implements HasMiddleware
     public function store(Request $request): RedirectResponse
     {
         // Obtenir les types municipaux valides
-        $municipalTypes = collect(DemandeType::municipalTypes())->pluck('value')->toArray();
+        $municipalTypes = collect(DemandeType::enabledMunicipalTypes())->pluck('value')->toArray();
         
         $validated = $request->validate([
             'titre' => 'required|string|max:255',
@@ -70,7 +70,7 @@ class DemandeController extends Controller implements HasMiddleware
 
     public function show(Demande $demande): View
     {
-        $this->authorize('view', $demande);
+       \Illuminate\Support\Facades\Gate::authorize('view', $demande);
         $demande->load('messages.expediteur', 'agentAssigne');
 
         return view('citoyen.demandes.show', ['demande' => $demande]);

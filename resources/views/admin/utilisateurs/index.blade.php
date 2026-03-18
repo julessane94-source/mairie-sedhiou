@@ -1,92 +1,73 @@
 @extends('layouts.app')
 
-@section('title', 'Utilisateurs - Admin - Mairi')
+@section('title', (($citoyensOnly ?? false) ? 'Citoyens' : 'Utilisateurs') . ' - Admin - Mairi')
 
 @section('content')
-<div class="mb-8">
-    <h1 class="text-3xl font-bold text-gray-900">Gestion des utilisateurs</h1>
-    <p class="text-gray-600 mt-2">Gérez les rôles et statuts des utilisateurs</p>
-</div>
+@php $isCitoyens = $citoyensOnly ?? false; @endphp
+<div class="space-y-6">
+    <section class="relative overflow-hidden rounded-3xl border border-indigo-200 bg-gradient-to-r from-indigo-700 via-blue-700 to-cyan-700 p-8 text-white shadow-xl">
+        <div class="absolute -right-12 -top-12 h-44 w-44 rounded-full bg-cyan-200/20 blur-3xl"></div>
+        <h1 class="text-3xl font-black tracking-tight">{{ $isCitoyens ? 'Liste des citoyens' : 'Gestion des utilisateurs' }}</h1>
+        <p class="mt-2 text-sm text-indigo-100">Filtrez par statut, role et recherche rapide.</p>
+    </section>
 
-<!-- Filtres -->
-<div class="bg-white rounded-lg shadow p-4 mb-6">
-    <form action="{{ route('admin.utilisateurs.index') }}" method="GET" class="flex gap-4 flex-wrap">
-        <select name="role" class="px-3 py-2 border border-gray-300 rounded-lg">
-            <option value="">Tous les rôles</option>
-            <option value="admin" @selected(request('role') === 'admin')>Admin</option>
-            <option value="citoyen" @selected(request('role') === 'citoyen')>Citoyen</option>
-            <option value="agent" @selected(request('role') === 'agent')>Agent</option>
-        </select>
-        
-        <select name="statut" class="px-3 py-2 border border-gray-300 rounded-lg">
-            <option value="">Tous les statuts</option>
-            <option value="actif" @selected(request('statut') === 'actif')>Actif</option>
-            <option value="inactif" @selected(request('statut') === 'inactif')>Inactif</option>
-            <option value="suspendu" @selected(request('statut') === 'suspendu')>Suspendu</option>
-        </select>
-        
-        <input type="text" name="search" placeholder="Rechercher par nom/email..." value="{{ request('search') }}"
-            class="px-3 py-2 border border-gray-300 rounded-lg">
-        
-        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Filtrer</button>
-    </form>
-</div>
+    <section class="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
+        <form action="{{ $isCitoyens ? route('admin.citoyens.index') : route('admin.utilisateurs.index') }}" method="GET" class="grid grid-cols-1 gap-3 md:grid-cols-5">
+            @if(!$isCitoyens)
+            <select name="role" class="rounded-xl border border-slate-300 px-3 py-2">
+                <option value="">Tous les roles</option>
+                <option value="admin" @selected(request('role') === 'admin')>Admin</option>
+                <option value="citoyen" @selected(request('role') === 'citoyen')>Citoyen</option>
+                <option value="agent" @selected(request('role') === 'agent')>Agent</option>
+            </select>
+            @endif
+            <select name="statut" class="rounded-xl border border-slate-300 px-3 py-2">
+                <option value="">Tous les statuts</option>
+                <option value="actif" @selected(request('statut') === 'actif')>Actif</option>
+                <option value="inactif" @selected(request('statut') === 'inactif')>Inactif</option>
+                <option value="suspendu" @selected(request('statut') === 'suspendu')>Suspendu</option>
+            </select>
+            <input type="text" name="search" value="{{ request('search') }}" placeholder="Nom, email, numero citoyen" class="rounded-xl border border-slate-300 px-3 py-2 md:col-span-2">
+            <button type="submit" class="rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 px-4 py-2 text-sm font-bold text-white">Filtrer</button>
+            <a href="{{ $isCitoyens ? route('admin.citoyens.index') : route('admin.utilisateurs.index') }}" class="rounded-xl border border-slate-300 px-4 py-2 text-center text-sm font-semibold text-slate-700">Reinitialiser</a>
+        </form>
+    </section>
 
-<!-- Liste des utilisateurs -->
-<div class="bg-white rounded-lg shadow overflow-hidden">
-    <div class="overflow-x-auto">
-        <table class="w-full">
-            <thead>
-                <tr class="bg-gray-50 border-b border-gray-200">
-                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Nom</th>
-                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Email</th>
-                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Rôle</th>
-                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Statut</th>
-                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Depuis le</th>
-                    <th class="px-6 py-3 text-left text-sm font-semibold text-gray-700">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($utilisateurs as $user)
-                    <tr class="border-b border-gray-200 hover:bg-gray-50">
-                        <td class="px-6 py-4 text-gray-900 font-medium">{{ $user->name }}</td>
-                        <td class="px-6 py-4 text-gray-700">{{ $user->email }}</td>
-                        <td class="px-6 py-4">
-                            <span class="inline-block px-3 py-1 text-sm rounded-full font-semibold
-                                @if($user->role === 'admin') bg-red-100 text-red-800
-                                @elseif($user->role === 'agent') bg-green-100 text-green-800
-                                @else bg-blue-100 text-blue-800
-                                @endif">
-                                {{ ucfirst($user->role) }}
-                            </span>
-                        </td>
-                        <td class="px-6 py-4">
-                            <span class="inline-block px-3 py-1 text-sm rounded-full font-semibold
-                                @if($user->statut === 'actif') bg-green-100 text-green-800
-                                @elseif($user->statut === 'inactif') bg-gray-100 text-gray-800
-                                @else bg-red-100 text-red-800
-                                @endif">
-                                {{ ucfirst($user->statut) }}
-                            </span>
-                        </td>
-                        <td class="px-6 py-4 text-gray-700 text-sm">{{ $user->created_at->format('d/m/Y') }}</td>
-                        <td class="px-6 py-4">
-                            <a href="{{ route('admin.utilisateurs.show', $user) }}" class="text-blue-600 hover:underline">Voir</a>
-                        </td>
+    <section class="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="border-b border-slate-200 text-left text-xs uppercase tracking-wider text-slate-500">
+                        <th class="px-4 py-3">Nom</th>
+                        <th class="px-4 py-3">Email</th>
+                        <th class="px-4 py-3">Role</th>
+                        <th class="px-4 py-3">Statut</th>
+                        <th class="px-4 py-3">Numero citoyen</th>
+                        <th class="px-4 py-3">Depuis le</th>
+                        <th class="px-4 py-3">Action</th>
                     </tr>
-                @empty
-                    <tr>
-                        <td colspan="6" class="px-6 py-4 text-center text-gray-700">Aucun utilisateur trouvé</td>
+                </thead>
+                <tbody>
+                    @forelse($utilisateurs as $user)
+                    <tr class="border-b border-slate-100">
+                        <td class="px-4 py-3 font-semibold text-slate-900">{{ $user->name }}</td>
+                        <td class="px-4 py-3 text-slate-600">{{ $user->email }}</td>
+                        <td class="px-4 py-3"><span class="rounded-full px-2 py-1 text-xs font-semibold @if($user->role === 'admin') bg-rose-100 text-rose-800 @elseif($user->role === 'agent') bg-emerald-100 text-emerald-800 @else bg-blue-100 text-blue-800 @endif">{{ ucfirst($user->role) }}</span></td>
+                        <td class="px-4 py-3"><span class="rounded-full px-2 py-1 text-xs font-semibold @if($user->statut === 'actif') bg-emerald-100 text-emerald-800 @elseif($user->statut === 'inactif') bg-slate-100 text-slate-700 @else bg-rose-100 text-rose-800 @endif">{{ ucfirst($user->statut) }}</span></td>
+                        <td class="px-4 py-3 text-slate-600">{{ $user->numero_citoyen ?? '-' }}</td>
+                        <td class="px-4 py-3 text-slate-500">{{ $user->created_at->format('d/m/Y') }}</td>
+                        <td class="px-4 py-3"><a href="{{ route('admin.utilisateurs.show', $user) }}" class="font-semibold text-blue-700 hover:underline">Voir</a></td>
                     </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
-    
-    @if($utilisateurs->hasPages())
-        <div class="p-6 border-t border-gray-200">
-            {{ $utilisateurs->links() }}
+                    @empty
+                    <tr><td colspan="7" class="px-4 py-6 text-center text-slate-500">Aucun utilisateur trouve.</td></tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
-    @endif
+
+        @if($utilisateurs->hasPages())
+        <div class="border-t border-slate-200 p-5">{{ $utilisateurs->links() }}</div>
+        @endif
+    </section>
 </div>
 @endsection

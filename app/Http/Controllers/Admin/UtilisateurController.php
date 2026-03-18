@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Profil;
 use App\Models\User;
+use App\Services\CitizenNumberGenerator;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\Middleware;
@@ -21,8 +23,53 @@ class UtilisateurController extends Controller implements HasMiddleware
 
     public function index(): View
     {
-        $utilisateurs = User::paginate(20);
+        $query = User::query()->with('profil');
+
+        if (request()->filled('role')) {
+            $query->where('role', request('role'));
+        }
+
+        if (request()->filled('statut')) {
+            $query->where('statut', request('statut'));
+        }
+
+        if (request()->filled('search')) {
+            $search = request('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('numero_citoyen', 'like', "%{$search}%");
+            });
+        }
+
+        $utilisateurs = $query->latest()->paginate(20)->withQueryString();
+
         return view('admin.utilisateurs.index', ['utilisateurs' => $utilisateurs]);
+    }
+
+    public function citoyens(): View
+    {
+        $query = User::where('role', 'citoyen')->with('profil');
+
+        if (request()->filled('statut')) {
+            $query->where('statut', request('statut'));
+        }
+
+        if (request()->filled('search')) {
+            $search = request('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('numero_citoyen', 'like', "%{$search}%");
+            });
+        }
+
+        $utilisateurs = $query->latest()->paginate(20)->withQueryString();
+
+        return view('admin.utilisateurs.index', [
+            'utilisateurs' => $utilisateurs,
+            'citoyensOnly' => true,
+        ]);
     }
 
     public function show(User $user): View
@@ -46,7 +93,10 @@ class UtilisateurController extends Controller implements HasMiddleware
         ]);
 
         $validated['password'] = bcrypt($validated['password']);
-        User::create($validated);
+        $user = User::create($validated);
+
+        // Assure un profil minimal pour tous les comptes
+        Profil::firstOrCreate(['user_id' => $user->id], []);
 
         return redirect()->route('admin.utilisateurs.index')->with('success', 'Utilisateur créé avec succès');
     }
@@ -68,16 +118,25 @@ class UtilisateurController extends Controller implements HasMiddleware
         ]);
 
         // Si l'utilisateur est citoyen, mettre à jour le profil aussi
-        if ($user->role === 'citoyen' && $user->profil) {
-            $user->profil->update($request->only([
+        if ($user->role === 'citoyen') {
+            $profil = $user->profil ?? $user->profil()->create([]);
+            $profil->update($request->only([
                 'date_naissance',
                 'lieu_naissance',
                 'adresse',
                 'numero_registre'
             ]));
+
+            if ($profil->date_naissance && $profil->numero_registre) {
+                $user->numero_citoyen = CitizenNumberGenerator::generate(
+                    $profil->date_naissance->format('Y-m-d'),
+                    $profil->numero_registre
+                );
+            }
         }
 
         $user->update($validated);
+        $user->save();
 
         return redirect()->route('admin.utilisateurs.show', $user)->with('success', 'Utilisateur mis à jour avec succès');
     }

@@ -1,23 +1,18 @@
 <?php
-
 namespace App\Http\Controllers\Agent;
-
 use App\Http\Controllers\Controller;
 use App\Models\Demande;
+use App\Models\Message;
 use Illuminate\View\View;
 
 class DashboardController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-        $this->middleware('role:agent');
-    }
+    // On supprime le constructeur ici et on gère la sécurité dans les routes (plus propre)
 
     public function index(): View
     {
         $user = auth()->user();
-        
+
         $demandesAssignees = $user->demandesAssignees()
             ->latest()
             ->paginate(10);
@@ -34,11 +29,29 @@ class DashboardController extends Controller
             ->whereIn('statut', ['acceptee', 'rejetee'])
             ->count();
 
-        return view('agent.dashboard', [
-            'demandesAssignees' => $demandesAssignees,
-            'demandesEnCours' => $demandesEnCours,
-            'demandesPendantes' => $demandesPendantes,
-            'demandesTerminees' => $demandesTerminees,
-        ]);
+        $assignedIds = $user->demandesAssignees()->pluck('id');
+
+        $messagesRecus = Message::whereIn('demande_id', $assignedIds)
+            ->where('expediteur_id', '!=', $user->id)
+            ->with(['demande', 'expediteur'])
+            ->latest()
+            ->take(5)
+            ->get();
+
+        $messagesEnvoyes = Message::whereIn('demande_id', $assignedIds)
+            ->where('expediteur_id', $user->id)
+            ->with(['demande', 'expediteur'])
+            ->latest()
+            ->take(5)
+            ->get();
+
+        return view('agent.dashboard', compact(
+            'demandesAssignees', 
+            'demandesEnCours', 
+            'demandesPendantes', 
+            'demandesTerminees',
+            'messagesRecus',
+            'messagesEnvoyes'
+        ));
     }
 }

@@ -7,13 +7,19 @@
     <a href="{{ route('admin.utilisateurs.index') }}" class="text-blue-600 hover:underline mb-4 inline-block">
         ← Retour aux utilisateurs
     </a>
+
+    @if(session('success'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+    @endif
+
     <h1 class="text-3xl font-bold text-gray-900">{{ $user->name }}</h1>
     <p class="text-gray-600 mt-2">{{ $user->email }}</p>
 </div>
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     <div class="lg:col-span-2">
-        <!-- Informations de compte -->
         <div class="bg-white rounded-lg shadow p-6 mb-6">
             <h2 class="text-xl font-bold text-gray-900 mb-6">Informations du compte</h2>
             
@@ -29,18 +35,14 @@
                 </div>
                 
                 <div>
-                    <p class="text-gray-600 text-sm font-semibold">Créé le</p>
-                    <p class="text-gray-900 font-medium">{{ $user->created_at->format('d/m/Y H:i') }}</p>
-                </div>
-                
-                <div>
-                    <p class="text-gray-600 text-sm font-semibold">Dernière mise à jour</p>
-                    <p class="text-gray-900 font-medium">{{ $user->updated_at->format('d/m/Y H:i') }}</p>
+                    <p class="text-sm text-gray-500">Membre depuis le :</p>
+                    <p class="text-gray-900 font-medium">
+                        {{ $user->created_at ? $user->created_at->format('d/m/Y') : 'Date non disponible' }}
+                    </p>
                 </div>
             </div>
         </div>
 
-        <!-- Profil personnel (si citoyen) -->
         @if($user->profil)
         <div class="bg-white rounded-lg shadow p-6">
             <h2 class="text-xl font-bold text-gray-900 mb-6">Informations personnelles</h2>
@@ -78,20 +80,17 @@
         @endif
     </div>
 
-    <!-- Actions et paramètres -->
     <div class="lg:col-span-1">
         <div class="bg-white rounded-lg shadow p-6 sticky top-8">
             <h2 class="text-lg font-bold text-gray-900 mb-6">Paramètres</h2>
             
-            <!-- Changement de rôle -->
             <div class="mb-6">
                 <label class="block text-gray-700 font-semibold mb-2">Rôle</label>
                 <form action="{{ route('admin.utilisateurs.changerRole', $user) }}" method="POST">
                     @csrf
                     @method('PATCH')
                     
-                    <select name="role" class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-2
-                        @error('role') border-red-500 @enderror">
+                    <select name="role" class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-2 @error('role') border-red-500 @enderror">
                         <option value="admin" @selected($user->role === 'admin')>Admin</option>
                         <option value="citoyen" @selected($user->role === 'citoyen')>Citoyen</option>
                         <option value="agent" @selected($user->role === 'agent')>Agent</option>
@@ -103,15 +102,13 @@
                 </form>
             </div>
 
-            <!-- Changement de statut -->
             <div class="mb-6 pt-6 border-t border-gray-200">
                 <label class="block text-gray-700 font-semibold mb-2">Statut</label>
                 <form action="{{ route('admin.utilisateurs.changerStatut', $user) }}" method="POST">
                     @csrf
                     @method('PATCH')
                     
-                    <select name="statut" class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-2
-                        @error('statut') border-red-500 @enderror">
+                    <select name="statut" class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-2 @error('statut') border-red-500 @enderror">
                         <option value="actif" @selected($user->statut === 'actif')>Actif</option>
                         <option value="inactif" @selected($user->statut === 'inactif')>Inactif</option>
                         <option value="suspendu" @selected($user->statut === 'suspendu')>Suspendu</option>
@@ -123,7 +120,6 @@
                 </form>
             </div>
 
-            <!-- Stats -->
             <div class="pt-6 border-t border-gray-200">
                 <h3 class="font-bold text-gray-900 mb-4">Statistiques</h3>
                 <div class="space-y-3">
